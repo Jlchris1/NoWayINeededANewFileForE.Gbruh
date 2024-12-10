@@ -1,0 +1,151 @@
+-- Create the ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "TeleportGUI"
+screenGui.ResetOnSpawn = false -- Persist after respawn
+
+-- Toggle positions for teleporting
+local togglePositions = {
+    Vector3.new(266.45123291015625, 2.9999990463256836, -719.4231567382812),
+    Vector3.new(421.7074890136719, 2.999999523162842, -370.0318908691406),
+    Vector3.new(-143.39913940429688, 2.9999990463256836, -152.67324829101562)
+}
+
+-- Variables
+local activeToggle = nil -- No toggle active by default
+local toggles = {} -- Keep track of toggle states
+local teleportCount = 0 -- Counter for teleport attempts per respawn
+local maxTeleports = 3 -- Max teleportations allowed per respawn
+
+-- Create toggle buttons (1, 2, 3)
+for i = 1, 3 do
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0, 30, 0, 30) -- 30x30 pixels
+    button.Position = UDim2.new(0, 10 + (i - 1) * 40, 0, 10) -- Top-left with spacing
+    button.Text = tostring(i)
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red (disabled by default)
+    button.Parent = screenGui
+
+    -- Initialize toggle state
+    toggles[i] = false
+
+    -- Button click handler for 1, 2, 3
+    button.MouseButton1Click:Connect(function()
+        if toggles[i] then
+            -- If the toggle is active, disable it
+            toggles[i] = false
+            button.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red
+            activeToggle = nil -- No active toggle
+        else
+            -- Disable all other toggles
+            for j, otherButton in ipairs(screenGui:GetChildren()) do
+                if otherButton:IsA("TextButton") then
+                    otherButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red
+                    toggles[j] = false
+                end
+            end
+
+            -- Enable this toggle
+            toggles[i] = true
+            button.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- Green
+            activeToggle = i -- Set this as the active toggle
+        end
+    end)
+end
+
+-- Create S1, S2, S3 buttons for teleportation to specific locations next to the 1, 2, 3 buttons
+local function createTeleportButton(name, position, offsetX)
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0, 30, 0, 30) -- Same size as the original buttons
+    button.Position = UDim2.new(0, 10 + offsetX, 0, 10) -- Position at the same height as 1, 2, 3 buttons
+    button.Text = name
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red (disabled by default)
+    button.Parent = screenGui
+
+    -- Teleport logic for each button
+    button.MouseButton1Click:Connect(function()
+        local character = game.Players.LocalPlayer.Character
+        if character and character:FindFirstChild("HumanoidRootPart") then
+            local humanoidRootPart = character.HumanoidRootPart
+            humanoidRootPart.CFrame = CFrame.new(position)
+        end
+    end)
+end
+
+-- Create the S1, S2, and S3 buttons with the same height as the original buttons
+createTeleportButton("S1", togglePositions[1], 140)  -- S1 next to 1
+createTeleportButton("S2", togglePositions[2], 180)  -- S2 next to 2
+createTeleportButton("S3", togglePositions[3], 220)  -- S3 next to 3
+
+-- Function to monitor character visibility and teleport if visible
+local function monitorTransparency(character)
+    teleportCount = 0 -- Reset teleport counter after respawn
+
+    -- Function to handle teleportation
+    local function teleportIfVisible()
+        for _, part in pairs(character:GetDescendants()) do
+            if part:IsA("BasePart") and part.Transparency < 1 then
+                -- Teleport to the active toggle position if one is active
+                if activeToggle then
+                    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+                    if humanoidRootPart then
+                        humanoidRootPart.CFrame = CFrame.new(togglePositions[activeToggle])
+                        teleportCount = teleportCount + 1 -- Increment teleport counter
+                    end
+                end
+                break
+            end
+        end
+    end
+
+    -- Allow teleportations 3 times per respawn with 0.5 second delay
+    while teleportCount < maxTeleports do
+        task.wait(0.5) -- Delay between teleport attempts
+        teleportIfVisible() -- Check and teleport if the character is visible
+    end
+end
+
+-- Function to start monitoring immediately when the character is created or when toggles change
+local function monitorCharacterTransparency(character)
+    teleportCount = 0 -- Reset teleport counter
+
+    -- Monitor transparency
+    local function checkTransparencyLoop()
+        while true do
+            task.wait(0.2) -- Small delay for performance reasons
+
+            local isVisible = false
+            for _, part in pairs(character:GetDescendants()) do
+                if part:IsA("BasePart") and part.Transparency < 1 then
+                    isVisible = true
+                    break
+                end
+            end
+
+            if isVisible and activeToggle then
+                -- Teleport to the active toggle position if one is active
+                local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+                if humanoidRootPart then
+                    humanoidRootPart.CFrame = CFrame.new(togglePositions[activeToggle])
+                    teleportCount = teleportCount + 1
+                    if teleportCount >= maxTeleports then
+                        break
+                    end
+                end
+            end
+        end
+    end
+
+    -- Start the transparency check loop
+    checkTransparencyLoop()
+end
+
+-- Start monitoring transparency after respawn and on character spawn
+game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
+    character:WaitForChild("HumanoidRootPart") -- Ensure the character is fully loaded
+    monitorCharacterTransparency(character) -- Start the monitoring process after respawn
+end)
+
+-- Parent the ScreenGui to Player's PlayerGui
+screenGui.Parent = game.Players.LocalPlayer.PlayerGui
