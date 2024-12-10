@@ -30,9 +30,19 @@ progressLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 progressLabel.BackgroundTransparency = 1 -- Make background transparent
 progressLabel.Parent = screenGui
 
+-- Create the cooldown label next to the Unanchor button
+local cooldownLabel = Instance.new("TextLabel")
+cooldownLabel.Size = UDim2.new(0, 50, 0, 30) -- Adjust size as needed
+cooldownLabel.Position = UDim2.new(1, -140, 0, 50) -- Move cooldown further to the right
+cooldownLabel.Text = "Cooldown: 10s"
+cooldownLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+cooldownLabel.BackgroundTransparency = 1 -- Make background transparent
+cooldownLabel.Parent = screenGui
+
 -- Keep track of anchor/unanchor status
 local isAnchored = false
 local isUnanchoring = false
+local cooldownTime = 10 -- Cooldown time in seconds
 
 -- Function to anchor the HumanoidRootPart
 local function anchorHumanoidRootPart()
@@ -54,15 +64,22 @@ end
 
 -- Button click handler for Anchor button
 anchorButton.MouseButton1Click:Connect(function()
-    if progressLabel.Text == "Progress: 3/3" then
-        local character = game.Players.LocalPlayer.Character
-        if character and character:FindFirstChild("HumanoidRootPart") then
-            local humanoidRootPart = character.HumanoidRootPart
-            humanoidRootPart.Anchored = true
-            wait(0.4) -- Wait for 0.4 seconds after Progress hits 3/3
-            wait(5) -- Keep anchored for 5 seconds
-            humanoidRootPart.Anchored = false
+    isAnchored = not isAnchored -- Toggle the anchored state
+
+    if isAnchored then
+        anchorButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- Green when active
+        if progressLabel.Text == "Progress: 3/3" then
+            local character = game.Players.LocalPlayer.Character
+            if character and character:FindFirstChild("HumanoidRootPart") then
+                local humanoidRootPart = character.HumanoidRootPart
+                humanoidRootPart.Anchored = true
+                wait(0.4) -- Wait for 0.4 seconds after Progress hits 3/3
+                wait(5) -- Keep anchored for 5 seconds
+                humanoidRootPart.Anchored = false
+            end
         end
+    else
+        anchorButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red when inactive
     end
 end)
 
@@ -72,12 +89,16 @@ unanchorButton.MouseButton1Click:Connect(function()
 
     if isUnanchoring then
         unanchorButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- Green when active
+        cooldownLabel.Text = "Cooldown: " .. cooldownTime .. "s" -- Reset cooldown display
         while isUnanchoring do
             local character = game.Players.LocalPlayer.Character
             if character and character:FindFirstChild("HumanoidRootPart") then
                 unanchorHumanoidRootPart() -- Unanchor every 10 seconds
             end
-            wait(10) -- Wait for 10 seconds before unanchoring again
+            for i = cooldownTime, 0, -1 do
+                cooldownLabel.Text = "Cooldown: " .. i .. "s"
+                wait(1) -- Wait 1 second before decrementing the cooldown
+            end
         end
     else
         unanchorButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red when inactive
