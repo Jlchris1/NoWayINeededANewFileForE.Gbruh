@@ -1,0 +1,88 @@
+-- Create the ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "AutoFarmGUI"
+screenGui.ResetOnSpawn = false -- Persist after respawn
+
+-- Create the Anchor button
+local anchorButton = Instance.new("TextButton")
+anchorButton.Size = UDim2.new(0, 30, 0, 30) -- 30x30 pixels
+anchorButton.Position = UDim2.new(1, -40, 0, 10) -- Position at top-right
+anchorButton.Text = "Anchor"
+anchorButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+anchorButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red (disabled by default)
+anchorButton.Parent = screenGui
+
+-- Create the Unanchor button
+local unanchorButton = Instance.new("TextButton")
+unanchorButton.Size = UDim2.new(0, 30, 0, 30) -- 30x30 pixels
+unanchorButton.Position = UDim2.new(1, -40, 0, 50) -- Position below Anchor button
+unanchorButton.Text = "Unanchor"
+unanchorButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+unanchorButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red (disabled by default)
+unanchorButton.Parent = screenGui
+
+-- Create the TextLabel to display progress (for example)
+local progressLabel = Instance.new("TextLabel")
+progressLabel.Size = UDim2.new(0, 150, 0, 30)
+progressLabel.Position = UDim2.new(1, -160, 0, 10)
+progressLabel.Text = "Progress: 0/3"
+progressLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+progressLabel.BackgroundTransparency = 1 -- Make background transparent
+progressLabel.Parent = screenGui
+
+-- Keep track of anchor/unanchor status
+local isAnchored = false
+local isUnanchoring = false
+
+-- Function to anchor the HumanoidRootPart
+local function anchorHumanoidRootPart()
+    local character = game.Players.LocalPlayer.Character
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        local humanoidRootPart = character.HumanoidRootPart
+        humanoidRootPart.Anchored = true
+    end
+end
+
+-- Function to unanchor the HumanoidRootPart
+local function unanchorHumanoidRootPart()
+    local character = game.Players.LocalPlayer.Character
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        local humanoidRootPart = character.HumanoidRootPart
+        humanoidRootPart.Anchored = false
+    end
+end
+
+-- Button click handler for Anchor button
+anchorButton.MouseButton1Click:Connect(function()
+    if progressLabel.Text == "Progress: 3/3" then
+        local character = game.Players.LocalPlayer.Character
+        if character and character:FindFirstChild("HumanoidRootPart") then
+            local humanoidRootPart = character.HumanoidRootPart
+            humanoidRootPart.Anchored = true
+            wait(0.4) -- Wait for 0.4 seconds after Progress hits 3/3
+            wait(5) -- Keep anchored for 5 seconds
+            humanoidRootPart.Anchored = false
+        end
+    end
+end)
+
+-- Button click handler for Unanchor button (loop every 10 seconds when toggled)
+unanchorButton.MouseButton1Click:Connect(function()
+    isUnanchoring = not isUnanchoring -- Toggle the unanchoring state
+
+    if isUnanchoring then
+        unanchorButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- Green when active
+        while isUnanchoring do
+            local character = game.Players.LocalPlayer.Character
+            if character and character:FindFirstChild("HumanoidRootPart") then
+                unanchorHumanoidRootPart() -- Unanchor every 10 seconds
+            end
+            wait(10) -- Wait for 10 seconds before unanchoring again
+        end
+    else
+        unanchorButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red when inactive
+    end
+end)
+
+-- Add the ScreenGui to the player's PlayerGui
+screenGui.Parent = game.Players.LocalPlayer.PlayerGui
