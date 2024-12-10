@@ -1,0 +1,33 @@
+-- Get the PlayerGui
+local player = game:GetService("Players").LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- Access the GameUI and Quests frame
+local gameUI = playerGui:WaitForChild("GameUI")
+local questsFrame = gameUI:WaitForChild("Quests")
+
+-- Access the InformationFrame within the Quests frame
+local infoFrame = questsFrame:WaitForChild("InformationFrame")
+
+-- Function to ensure visibility and set positions
+local function ensureVisibilityAndPosition()
+    while true do
+        -- Ensure the Quests frame is visible and set its position
+        if not questsFrame.Visible then
+            questsFrame.Visible = true
+        end
+        questsFrame.Position = UDim2.new(0, 0, 1.29999995, 0)
+
+        -- Ensure the InformationFrame is visible and set its position
+        if not infoFrame.Visible then
+            infoFrame.Visible = true
+        end
+        infoFrame.Position = UDim2.new(6, 0, -6, 0)
+
+        -- Wait a short time before checking again
+        wait(0.1) -- Adjust the interval as needed
+    end
+end
+
+-- Run the ensureVisibilityAndPosition function
+ensureVisibilityAndPosition()
