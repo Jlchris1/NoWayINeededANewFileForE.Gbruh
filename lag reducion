@@ -52,7 +52,6 @@ local mapElementsToDestroy = {
 -- Additional folders or items to destroy directly
 local extraFoldersToDestroy = {
     "workspace.Dummies",
-    "workspace.Teleporters",
     "workspace.Knowledge Library",
     "workspace.Daily Spin",
     "workspace.Leaderboards",
@@ -119,4 +118,13 @@ if trainerZones then
     print("TrainerZones has been destroyed.")
 else
     print("TrainerZones not found.")
+end
+
+-- Explicitly destroy Teleporters
+local teleporters = workspace:FindFirstChild("Teleporters")
+if teleporters then
+    teleporters:Destroy()
+    print("Teleporters have been destroyed.")
+else
+    print("Teleporters not found.")
 end
