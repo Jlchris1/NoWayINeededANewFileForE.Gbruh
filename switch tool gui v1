@@ -1,0 +1,97 @@
+-- Create the ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "ToolToggleGUI"
+screenGui.ResetOnSpawn = false -- Persist after respawn
+
+-- Create the Toggle button
+local toggleButton = Instance.new("TextButton")
+toggleButton.Size = UDim2.new(0, 50, 0, 50) -- Button size 50x50 pixels
+toggleButton.Position = UDim2.new(1, -60, 0.5, -25) -- Position at right middle
+toggleButton.Text = "Toggle Tool"
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- Green (enabled by default)
+toggleButton.Parent = screenGui
+
+-- Create the TextBox for tool speed
+local speedTextBox = Instance.new("TextBox")
+speedTextBox.Size = UDim2.new(0, 50, 0, 50) -- Same size as button
+speedTextBox.Position = UDim2.new(1, -120, 0.5, -25) -- Position next to the button
+speedTextBox.Text = "2.5" -- Default speed value (in seconds)
+speedTextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+speedTextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- White background
+speedTextBox.Parent = screenGui
+
+-- Variables to track tool usage and state
+local toolActive = false
+local toolEquipped = nil  -- Keep track of the currently equipped tool
+local switchSpeed = tonumber(speedTextBox.Text) or 2.5 -- Default speed
+
+-- Update switch speed when the TextBox value changes
+speedTextBox.FocusLost:Connect(function()
+    local newSpeed = tonumber(speedTextBox.Text)
+    if newSpeed and newSpeed > 0 then
+        switchSpeed = newSpeed
+    else
+        speedTextBox.Text = tostring(switchSpeed) -- Revert to the current valid speed
+    end
+end)
+
+-- Function to equip a random tool from the backpack
+local function equipRandomTool()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local backpack = player.Backpack
+    
+    -- Get all tools in the backpack
+    local tools = {}
+    for _, item in pairs(backpack:GetChildren()) do
+        if item:IsA("Tool") then
+            table.insert(tools, item)
+        end
+    end
+    
+    if #tools > 0 then
+        -- Select a random tool from the list
+        local randomTool = tools[math.random(1, #tools)]
+        
+        -- Equip the tool by moving it to the character
+        if randomTool and randomTool.Parent == backpack then
+            randomTool.Parent = character
+            toolEquipped = randomTool
+            toggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red when a tool is equipped
+        end
+    end
+end
+
+-- Function to switch tools based on the current speed
+local function switchToolLoop()
+    while toolActive do
+        equipRandomTool()
+        wait(switchSpeed)  -- Wait for the current speed before switching tools
+        -- After the delay, return the equipped tool to the backpack
+        if toolEquipped then
+            toolEquipped.Parent = game.Players.LocalPlayer.Backpack
+            toolEquipped = nil
+        end
+    end
+end
+
+-- Button click handler for toggling the tool loop
+toggleButton.MouseButton1Click:Connect(function()
+    if not toolActive then
+        toolActive = true
+        toggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 0)  -- Yellow when active
+        switchToolLoop()  -- Start switching tools
+    else
+        toolActive = false
+        toggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- Green when deactivated
+        -- Return the currently equipped tool to the backpack
+        if toolEquipped then
+            toolEquipped.Parent = game.Players.LocalPlayer.Backpack
+            toolEquipped = nil
+        end
+    end
+end)
+
+-- Parent the ScreenGui to the Player's PlayerGui
+screenGui.Parent = game.Players.LocalPlayer.PlayerGui
