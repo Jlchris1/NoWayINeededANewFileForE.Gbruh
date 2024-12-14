@@ -63,16 +63,21 @@ local function equipRandomTool()
     end
 end
 
+-- Function to unequip the current tool
+local function unequipTool()
+    if toolEquipped then
+        toolEquipped.Parent = game.Players.LocalPlayer.Backpack
+        toolEquipped = nil
+    end
+end
+
 -- Function to switch tools based on the current speed
 local function switchToolLoop()
     while toolActive do
         equipRandomTool()
         wait(switchSpeed)  -- Wait for the current speed before switching tools
         -- After the delay, return the equipped tool to the backpack
-        if toolEquipped then
-            toolEquipped.Parent = game.Players.LocalPlayer.Backpack
-            toolEquipped = nil
-        end
+        unequipTool()
     end
 end
 
@@ -81,15 +86,23 @@ toggleButton.MouseButton1Click:Connect(function()
     if not toolActive then
         toolActive = true
         toggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 0)  -- Yellow when active
-        switchToolLoop()  -- Start switching tools
+        task.spawn(function()
+            switchToolLoop()  -- Start switching tools
+        end)
     else
         toolActive = false
         toggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- Green when deactivated
         -- Return the currently equipped tool to the backpack
-        if toolEquipped then
-            toolEquipped.Parent = game.Players.LocalPlayer.Backpack
-            toolEquipped = nil
-        end
+        unequipTool() -- Unequip the tool when toggled off
+    end
+end)
+
+-- Reinitialize tool loop after respawn (ensure the loop continues if activated)
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    if toolActive then
+        task.spawn(function()
+            switchToolLoop()  -- Restart the loop if it's still active
+        end)
     end
 end)
 
