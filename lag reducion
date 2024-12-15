@@ -38,3 +38,4 @@ end
 
 -- Destroy all items in the consolidated list
 destroyItems(itemsToDestroy)
+
