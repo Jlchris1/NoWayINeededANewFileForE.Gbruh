@@ -11,141 +11,256 @@ local togglePositions = {
 }
 
 -- Variables
-local activeToggle = nil -- No toggle active by default
-local toggles = {} -- Keep track of toggle states
-local teleportCount = 0 -- Counter for teleport attempts per respawn
-local maxTeleports = 3 -- Max teleportations allowed per respawn
+local activeToggle = nil
+local toggles = {}
+local teleportCount = 0
+local maxTeleports = 3
+local speedToggle = false
+local customSpeed = 16 -- Default player speed
+local jumpToggle = false
+local customJumpPower = 50 -- Default jump power
+
+-- Function to set player speed
+local function setPlayerSpeed(speed)
+    local character = game.Players.LocalPlayer.Character
+    if character then
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.WalkSpeed = speed
+        end
+    end
+end
+
+-- Function to set player jump power
+local function setPlayerJumpPower(jumpPower)
+    local character = game.Players.LocalPlayer.Character
+    if character then
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.JumpPower = jumpPower
+        end
+    end
+end
+
+-- Speed loop function
+local function startSpeedLoop()
+    task.spawn(function()
+        while speedToggle do
+            setPlayerSpeed(customSpeed)
+            task.wait(0) -- Infinite loop with 0-second delay
+        end
+        setPlayerSpeed(16) -- Reset to default speed when loop ends
+    end)
+end
+
+-- Jump power loop function
+local function startJumpPowerLoop()
+    task.spawn(function()
+        while jumpToggle do
+            setPlayerJumpPower(customJumpPower)
+            task.wait(0) -- Infinite loop with 0-second delay
+        end
+        setPlayerJumpPower(50) -- Reset to default jump power when loop ends
+    end)
+end
 
 -- Create toggle buttons (1, 2, 3)
 for i = 1, 3 do
     local button = Instance.new("TextButton")
-    button.Size = UDim2.new(0, 30, 0, 30) -- 30x30 pixels
-    button.Position = UDim2.new(0, 10 + (i - 1) * 40, 0, 10) -- Top-left with spacing
+    button.Size = UDim2.new(0, 30, 0, 30)
+    button.Position = UDim2.new(0, 10 + (i - 1) * 40, 0, 10)
     button.Text = tostring(i)
     button.TextColor3 = Color3.fromRGB(255, 255, 255)
-    button.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red (disabled by default)
+    button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
     button.Parent = screenGui
 
-    -- Initialize toggle state
     toggles[i] = false
 
-    -- Button click handler for 1, 2, 3
     button.MouseButton1Click:Connect(function()
         if toggles[i] then
-            -- If the toggle is active, disable it
             toggles[i] = false
-            button.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red
-            activeToggle = nil -- No active toggle
+            button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+            activeToggle = nil
         else
-            -- Disable all other toggles
             for j, otherButton in ipairs(screenGui:GetChildren()) do
                 if otherButton:IsA("TextButton") then
-                    otherButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red
+                    otherButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
                     toggles[j] = false
                 end
             end
-
-            -- Enable this toggle
             toggles[i] = true
-            button.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- Green
-            activeToggle = i -- Set this as the active toggle
+            button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+            activeToggle = i
         end
     end)
 end
 
--- Create S1, S2, S3 buttons for teleportation to specific locations next to the 1, 2, 3 buttons
+-- Create a Speed toggle button
+local speedButton = Instance.new("TextButton")
+speedButton.Size = UDim2.new(0, 60, 0, 30)
+speedButton.Position = UDim2.new(0, 10, 0, 50)
+speedButton.Text = "Speed"
+speedButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+speedButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+speedButton.Parent = screenGui
+
+speedButton.MouseButton1Click:Connect(function()
+    speedToggle = not speedToggle
+    speedButton.BackgroundColor3 = speedToggle and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
+
+    if speedToggle then
+        startSpeedLoop() -- Start the speed loop
+    end
+end)
+
+-- Create a TextBox for custom speed
+local speedInput = Instance.new("TextBox")
+speedInput.Size = UDim2.new(0, 60, 0, 30)
+speedInput.Position = UDim2.new(0, 80, 0, 50) -- Next to the speed toggle button
+speedInput.Text = tostring(customSpeed)
+speedInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+speedInput.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+speedInput.PlaceholderText = "Speed"
+speedInput.TextScaled = true
+speedInput.Parent = screenGui
+
+-- Update custom speed when the TextBox value changes
+speedInput.FocusLost:Connect(function(enterPressed)
+    local input = tonumber(speedInput.Text)
+    if input and input > 0 then
+        customSpeed = input
+    else
+        speedInput.Text = tostring(customSpeed) -- Reset to the last valid value
+    end
+end)
+
+-- Create Jump toggle button
+local jumpButton = Instance.new("TextButton")
+jumpButton.Size = UDim2.new(0, 60, 0, 30)
+jumpButton.Position = UDim2.new(0, 10, 0, 90)
+jumpButton.Text = "Jump"
+jumpButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+jumpButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+jumpButton.Parent = screenGui
+
+jumpButton.MouseButton1Click:Connect(function()
+    jumpToggle = not jumpToggle
+    jumpButton.BackgroundColor3 = jumpToggle and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
+
+    if jumpToggle then
+        startJumpPowerLoop() -- Start the jump power loop
+    end
+end)
+
+-- Create a TextBox for custom jump power
+local jumpInput = Instance.new("TextBox")
+jumpInput.Size = UDim2.new(0, 60, 0, 30)
+jumpInput.Position = UDim2.new(0, 80, 0, 90) -- Next to the jump toggle button
+jumpInput.Text = tostring(customJumpPower)
+jumpInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+jumpInput.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+jumpInput.PlaceholderText = "Jump"
+jumpInput.TextScaled = true
+jumpInput.Parent = screenGui
+
+-- Update custom jump power when the TextBox value changes
+jumpInput.FocusLost:Connect(function(enterPressed)
+    local input = tonumber(jumpInput.Text)
+    if input and input > 0 then
+        customJumpPower = input
+    else
+        jumpInput.Text = tostring(customJumpPower) -- Reset to the last valid value
+    end
+end)
+
+-- Function to initialize speed and jump on respawn
+local function initializeAttributes(character)
+    if speedToggle then
+        startSpeedLoop()
+    else
+        setPlayerSpeed(16) -- Default speed
+    end
+
+    if jumpToggle then
+        startJumpPowerLoop()
+    else
+        setPlayerJumpPower(50) -- Default jump power
+    end
+end
+
+-- Create teleportation buttons (S1, S2, S3)
 local function createTeleportButton(name, position, offsetX)
     local button = Instance.new("TextButton")
-    button.Size = UDim2.new(0, 30, 0, 30) -- Same size as the original buttons
-    button.Position = UDim2.new(0, 10 + offsetX, 0, 10) -- Position at the same height as 1, 2, 3 buttons
+    button.Size = UDim2.new(0, 30, 0, 30)
+    button.Position = UDim2.new(0, 10 + offsetX, 0, 130)
     button.Text = name
     button.TextColor3 = Color3.fromRGB(255, 255, 255)
-    button.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red (disabled by default)
+    button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
     button.Parent = screenGui
 
-    -- Teleport logic for each button
     button.MouseButton1Click:Connect(function()
         local character = game.Players.LocalPlayer.Character
         if character and character:FindFirstChild("HumanoidRootPart") then
-            local humanoidRootPart = character.HumanoidRootPart
-            humanoidRootPart.CFrame = CFrame.new(position)
+            character.HumanoidRootPart.CFrame = CFrame.new(position)
         end
     end)
 end
 
--- Create the S1, S2, and S3 buttons with the same height as the original buttons
-createTeleportButton("S1", togglePositions[1], 140)  -- S1 next to 1
-createTeleportButton("S2", togglePositions[2], 180)  -- S2 next to 2
-createTeleportButton("S3", togglePositions[3], 220)  -- S3 next to 3
+createTeleportButton("S1", togglePositions[1], 140)
+createTeleportButton("S2", togglePositions[2], 180)
+createTeleportButton("S3", togglePositions[3], 220)
 
--- Function to monitor character visibility and teleport if visible
+-- Monitor transparency and teleportation
 local function monitorTransparency(character)
-    teleportCount = 0 -- Reset teleport counter after respawn
-
-    -- Function to handle teleportation
+    teleportCount = 0
     local function teleportIfVisible()
         for _, part in pairs(character:GetDescendants()) do
-            if part:IsA("BasePart") and part.Transparency < 1 then
-                -- Teleport to the active toggle position if one is active
-                if activeToggle then
-                    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
-                    if humanoidRootPart then
-                        humanoidRootPart.CFrame = CFrame.new(togglePositions[activeToggle])
-                        teleportCount = teleportCount + 1 -- Increment teleport counter
-                    end
-                end
-                break
-            end
-        end
-    end
-
-    -- Allow teleportations 3 times per respawn with 0.5 second delay
-    while teleportCount < maxTeleports do
-        task.wait(0.5) -- Delay between teleport attempts
-        teleportIfVisible() -- Check and teleport if the character is visible
-    end
-end
-
--- Function to start monitoring immediately when the character is created or when toggles change
-local function monitorCharacterTransparency(character)
-    teleportCount = 0 -- Reset teleport counter
-
-    -- Monitor transparency
-    local function checkTransparencyLoop()
-        while true do
-            task.wait(0.2) -- Small delay for performance reasons
-
-            local isVisible = false
-            for _, part in pairs(character:GetDescendants()) do
-                if part:IsA("BasePart") and part.Transparency < 1 then
-                    isVisible = true
-                    break
-                end
-            end
-
-            if isVisible and activeToggle then
-                -- Teleport to the active toggle position if one is active
+            if part:IsA("BasePart") and part.Transparency < 1 and activeToggle then
                 local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
                 if humanoidRootPart then
                     humanoidRootPart.CFrame = CFrame.new(togglePositions[activeToggle])
                     teleportCount = teleportCount + 1
-                    if teleportCount >= maxTeleports then
-                        break
-                    end
+                    if teleportCount >= maxTeleports then return end
                 end
             end
         end
     end
 
-    -- Start the transparency check loop
-    checkTransparencyLoop()
+    while teleportCount < maxTeleports do
+        task.wait(0.5)
+        teleportIfVisible()
+    end
 end
 
--- Start monitoring transparency after respawn and on character spawn
+-- Connect CharacterAdded event
 game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
-    character:WaitForChild("HumanoidRootPart") -- Ensure the character is fully loaded
-    monitorCharacterTransparency(character) -- Start the monitoring process after respawn
+    character:WaitForChild("HumanoidRootPart")
+    monitorTransparency(character)
+    initializeAttributes(character)
 end)
 
--- Parent the ScreenGui to Player's PlayerGui
+-- Create Hide/Show button (grey, top-right)
+local hideButton = Instance.new("TextButton")
+hideButton.Size = UDim2.new(0, 60, 0, 30)
+hideButton.Position = UDim2.new(1, -70, 0, 10)
+hideButton.Text = "Hide"
+hideButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+hideButton.BackgroundColor3 = Color3.fromRGB(169, 169, 169) -- Grey color
+hideButton.Parent = screenGui
+
+local guiVisible = true
+hideButton.MouseButton1Click:Connect(function()
+    guiVisible = not guiVisible
+    for _, button in pairs(screenGui:GetChildren()) do
+        if button:IsA("TextButton") and button ~= hideButton then
+            button.Visible = guiVisible
+        end
+        if button:IsA("TextBox") then
+            button.Visible = guiVisible
+        end
+    end
+    hideButton.Text = guiVisible and "Hide" or "Show"
+end)
+
+-- Parent the ScreenGui to PlayerGui
 screenGui.Parent = game.Players.LocalPlayer.PlayerGui
