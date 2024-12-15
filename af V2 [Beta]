@@ -29,10 +29,6 @@ local currentTarget = nil
 local stopLocation = CFrame.new(238.069, 2.999, -702.163) -- Location to teleport when progress is 3/3
 local questCheckPosition = Vector3.new(234.79830932617188, 2.999999523162842, -697.8255615234375) -- Location to teleport if QuestPartProgress doesn't exist
 
--- Loop Handles
-local af1LoopHandle = nil
-local rvLoopHandle = nil
-
 -- Check if QuestPartProgress exists
 local function checkQuestPartProgress()
     local pathway = game:GetService("Players").LocalPlayer.PlayerGui.GameUI.Quests.InformationFrame.ScrollingFrame
@@ -43,7 +39,7 @@ end
 local function tweenToPosition(character, targetPosition, targetLookVector)
     local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
     if humanoidRootPart then
-        local tweenInfo = TweenInfo.new(0.05) -- Faster tween
+        local tweenInfo = TweenInfo.new(0.1) -- Adjusted for smoother but still fast movement
         local tweenGoal = {CFrame = CFrame.new(targetPosition, targetPosition + targetLookVector)}
         local tween = TweenService:Create(humanoidRootPart, tweenInfo, tweenGoal)
         tween:Play()
@@ -125,7 +121,7 @@ local function teleportBehindModels(character)
         else
             break
         end
-        wait(0.05) -- Faster execution interval
+        wait(0.2) -- Lower the rate of checking for better performance
     end
 end
 
@@ -133,59 +129,26 @@ end
 af1Button.MouseButton1Click:Connect(function()
     af1Active = not af1Active
     af1Button.BackgroundColor3 = af1Active and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
-
-    if af1LoopHandle then
-        af1LoopHandle:Disconnect()
-        af1LoopHandle = nil
-    end
-
     if af1Active then
         local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-        af1LoopHandle = coroutine.create(function()
-            teleportBehindModels(character)
-        end)
-        coroutine.resume(af1LoopHandle)
+        teleportBehindModels(character)
     end
 end)
 
 rvButton.MouseButton1Click:Connect(function()
     rvActive = not rvActive
     rvButton.BackgroundColor3 = rvActive and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
-
-    if rvLoopHandle then
-        rvLoopHandle:Disconnect()
-        rvLoopHandle = nil
-    end
-
-    if rvActive then
-        rvLoopHandle = coroutine.create(function()
-            while rvActive do
-                resetVelocity()
-                wait(0.1)
-            end
-        end)
-        coroutine.resume(rvLoopHandle)
+    while rvActive do
+        resetVelocity()
+        wait(0.2)
     end
 end)
 
 -- Handle Respawn Logic
 local function initializeCharacter(character)
-    if af1LoopHandle then
-        af1LoopHandle:Disconnect()
-        af1LoopHandle = nil
-    end
-
-    if rvLoopHandle then
-        rvLoopHandle:Disconnect()
-        rvLoopHandle = nil
-    end
-
     character:WaitForChild("HumanoidRootPart")
     if af1Active then
-        af1LoopHandle = coroutine.create(function()
-            teleportBehindModels(character)
-        end)
-        coroutine.resume(af1LoopHandle)
+        teleportBehindModels(character)
     end
 end
 
