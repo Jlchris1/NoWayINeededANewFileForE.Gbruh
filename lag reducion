@@ -1,70 +1,32 @@
--- Tables of items to destroy
-local npcsToDestroy = {
-    "Celeste",
-    "Contractor",
-    "Diamond Dave, The Bartender",
-    "Empty Soul",
-    "Mark",
-    "Milo, The Messenger",
-    "Nancore",
-    "Silas",
-    "Synced Soul",
-    "Voidal Being"
+-- Consolidated table of items to destroy
+local itemsToDestroy = {
+    -- NPCs
+    "Celeste", "Contractor", "Diamond Dave, The Bartender", "Empty Soul", "Mark", 
+    "Milo, The Messenger", "Nancore", "Silas", "Synced Soul", "Voidal Being",
+    
+    -- Interactables
+    "Dagger", "Punch", "Katana", "Forge Information", "Resonated Spin Crystal", 
+    "Stat Crystal", "Tanto", "Turtle Well", "Will of Freedom Replicator",
+    
+    -- Map Elements
+    "Bushes", "Forest of Napalm", "Grounds Outer", "Guardians", "Inner Decoration", 
+    "Inner Rock Debris", "Inner Rocks", "Inner Trees", "Outer Rocks", "Outer Trees", 
+    "Turtle Village", "SpawnedRestrictedDoors", "Road", "River", "Port", 
+    "PlaceableBlacklist", "MedievalBigHouse", "Barracks", "BORDERS", "Arena", 
+    "Remnants of Past", "Ruins",
+    
+    -- Extra Folders/Items
+    "placeableTemplate", "debrisHolder", "bulletHolder", "Dummies", 
+    "Knowledge Library", "Daily Spin", "Leaderboards", "itemOccupations",
+    
+    -- Explicitly handled items
+    "InteractiveGUI", "TrainerZones", "Teleporters"
 }
 
-local interactablesToDestroy = {
-    "Dagger",
-    "Punch",
-    "Katana",
-    "Forge Information",
-    "Resonated Spin Crystal",
-    "Stat Crystal",
-    "Tanto",
-    "Turtle Well",
-    "Will of Freedom Replicator"
-}
-
-local mapElementsToDestroy = {
-    "Bushes",
-    "Forest of Napalm",
-    "Grounds Outer",
-    "Guardians",
-    "Inner Decoration",
-    "Inner Rock Debris",
-    "Inner Rocks",
-    "Inner Trees",
-    "Outer Rocks",
-    "Outer Trees",
-    "Turtle Village",
-    "SpawnedRestrictedDoors",
-    "Road",
-    "River",
-    "Port",
-    "PlaceableBlacklist",
-    "MedievalBigHouse",
-    "Barracks",
-    "BORDERS",
-    "Arena",
-    "Remnants of Past",
-    "Ruins"
-}
-
--- Additional folders or items to destroy directly
-local extraFoldersToDestroy = {
-    "workspace.Dummies",
-    "workspace.Knowledge Library",
-    "workspace.Daily Spin",
-    "workspace.Leaderboards",
-    "workspace.bulletHolder",
-    "workspace.debrisHolder",
-    "workspace.itemOccupations",
-    "workspace.placeableTemplate"
-}
-
--- Function to destroy items in a given folder
-local function destroyItems(folder, items)
-    for _, itemName in ipairs(items) do
-        local item = folder:FindFirstChild(itemName)
+-- Function to destroy specific items in the workspace
+local function destroyItems(itemList)
+    for _, itemName in ipairs(itemList) do
+        local item = workspace:FindFirstChild(itemName)
         if item then
             item:Destroy()
             print(itemName .. " has been destroyed.")
@@ -74,57 +36,5 @@ local function destroyItems(folder, items)
     end
 end
 
--- Function to destroy folders or direct paths
-local function destroyFolder(folderPath)
-    local folder = folderPath
-    if typeof(folder) == "string" then
-        folder = workspace:FindFirstChild(folderPath)
-    end
-    if folder then
-        folder:Destroy()
-        print(folderPath .. " has been destroyed.")
-    else
-        print(folderPath .. " not found.")
-    end
-end
-
--- Destroy NPCs
-destroyItems(workspace.NPCs, npcsToDestroy)
-
--- Destroy Interactables
-destroyItems(workspace.Interactables, interactablesToDestroy)
-
--- Destroy Map Elements
-destroyItems(workspace.Map, mapElementsToDestroy)
-
--- Destroy Extra Folders
-for _, folderPath in ipairs(extraFoldersToDestroy) do
-    destroyFolder(folderPath)
-end
-
--- Explicitly destroy InteractiveGUI
-local interactiveGUI = workspace:FindFirstChild("InteractiveGUI")
-if interactiveGUI then
-    interactiveGUI:Destroy()
-    print("InteractiveGUI has been destroyed.")
-else
-    print("InteractiveGUI not found.")
-end
-
--- Explicitly destroy TrainerZones
-local trainerZones = workspace:FindFirstChild("TrainerZones")
-if trainerZones then
-    trainerZones:Destroy()
-    print("TrainerZones has been destroyed.")
-else
-    print("TrainerZones not found.")
-end
-
--- Explicitly destroy Teleporters
-local teleporters = workspace:FindFirstChild("Teleporters")
-if teleporters then
-    teleporters:Destroy()
-    print("Teleporters have been destroyed.")
-else
-    print("Teleporters not found.")
-end
+-- Destroy all items in the consolidated list
+destroyItems(itemsToDestroy)
