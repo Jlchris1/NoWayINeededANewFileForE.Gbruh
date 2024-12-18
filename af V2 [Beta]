@@ -39,7 +39,7 @@ end
 local function tweenToPosition(character, targetPosition, targetLookVector)
     local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
     if humanoidRootPart then
-        local tweenInfo = TweenInfo.new(0.1) -- Adjusted for smoother but still fast movement
+        local tweenInfo = TweenInfo.new(0.05) -- Faster tween
         local tweenGoal = {CFrame = CFrame.new(targetPosition, targetPosition + targetLookVector)}
         local tween = TweenService:Create(humanoidRootPart, tweenInfo, tweenGoal)
         tween:Play()
@@ -91,6 +91,26 @@ local function resetVelocity()
     end
 end
 
+-- Switch Target on Humanoid Death
+local function monitorHumanoidHealth(character, targetModel)
+    local humanoid = targetModel:FindFirstChildOfClass("Humanoid")
+    if humanoid then
+        humanoid.HealthChanged:Connect(function(health)
+            if health <= 0 and af1Active then
+                -- Target died, switch to a new one
+                local targetModels = findAllTargetModels()
+                for _, model in pairs(targetModels) do
+                    if model ~= targetModel then
+                        currentTarget = model
+                        teleportBehindModel(character, currentTarget)
+                        break
+                    end
+                end
+            end
+        end)
+    end
+end
+
 -- AF1 Logic
 local function teleportBehindModels(character)
     while af1Active do
@@ -113,6 +133,7 @@ local function teleportBehindModels(character)
                     if #targetModels > 0 then
                         currentTarget = targetModels[1] -- Select the first available target
                         teleportBehindModel(character, currentTarget)
+                        monitorHumanoidHealth(character, currentTarget) -- Monitor target's health
                     else
                         tweenToPosition(character, stopLocation.Position, Vector3.new(0, 0, -1)) -- Default loop location
                     end
@@ -121,7 +142,7 @@ local function teleportBehindModels(character)
         else
             break
         end
-        wait(0.2) -- Lower the rate of checking for better performance
+        wait(0.05) -- Faster execution interval
     end
 end
 
@@ -140,7 +161,7 @@ rvButton.MouseButton1Click:Connect(function()
     rvButton.BackgroundColor3 = rvActive and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
     while rvActive do
         resetVelocity()
-        wait(0.2)
+        wait(0.1)
     end
 end)
 
