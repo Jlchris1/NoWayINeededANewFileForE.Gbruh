@@ -125,7 +125,18 @@ local function teleportBehindModels(character)
                 local progressBarText = progressBar and progressBar.Text or nil
 
                 if progressBarText == "4/4" then
+                    -- Move to stop location when progress is 4/4
                     tweenToPosition(character, stopLocation.Position, Vector3.new(0, 0, -1))
+                elseif progressBarText == "0/4" then
+                    -- Restart movement when progress is 0/4
+                    local targetModels = findAllTargetModels()
+                    if #targetModels > 0 then
+                        currentTarget = targetModels[1] -- Select the first available target
+                        teleportBehindModel(character, currentTarget)
+                        monitorHumanoidHealth(character, currentTarget) -- Monitor target's health
+                    else
+                        tweenToPosition(character, stopLocation.Position, Vector3.new(0, 0, -1)) -- Default loop location
+                    end
                 elseif currentTarget and currentTarget.Parent then
                     teleportBehindModel(character, currentTarget)
                 else
