@@ -26,7 +26,7 @@ rvButton.Parent = screenGui
 local af1Active = false
 local rvActive = false
 local currentTarget = nil
-local stopLocation = CFrame.new(238.069, 2.999, -702.163) -- Location to teleport when progress is 3/3
+local stopLocation = CFrame.new(238.069, 2.999, -702.163) -- Location to teleport when progress is 4/4
 local questCheckPosition = Vector3.new(234.79830932617188, 2.999999523162842, -697.8255615234375) -- Location to teleport if QuestPartProgress doesn't exist
 
 -- Check if QuestPartProgress exists
@@ -124,7 +124,7 @@ local function teleportBehindModels(character)
                 local progressBar = game:GetService("Players").LocalPlayer.PlayerGui.GameUI.Quests.InformationFrame.ScrollingFrame.QuestPartProgress.Progress
                 local progressBarText = progressBar and progressBar.Text or nil
 
-                if progressBarText == "3/3" then
+                if progressBarText == "4/4" then
                     tweenToPosition(character, stopLocation.Position, Vector3.new(0, 0, -1))
                 elseif currentTarget and currentTarget.Parent then
                     teleportBehindModel(character, currentTarget)
