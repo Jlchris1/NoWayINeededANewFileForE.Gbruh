@@ -69,7 +69,7 @@ local function findAllTargetModels()
                    (accessory.Name == "PurpleHair" or 
                     accessory.Name == "nes" or 
                     accessory.Name == "Meshes/hairflowersAccessory" or 
-                    accessory.Name == "workspace.AiCharacters["DragonQueenHair" or 
+                    accessory.Name == "DragonQueenHair" or 
                     accessory.Name == "BlondeBraid") then
                     table.insert(modelsToTeleport, model)
                 end
