@@ -1,0 +1,184 @@
+local TweenService = game:GetService("TweenService")
+
+-- Create the ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "AutoFarmGUI"
+screenGui.ResetOnSpawn = false -- Persist after respawn
+
+-- Buttons configuration
+local af1Button = Instance.new("TextButton")
+af1Button.Size = UDim2.new(0, 60, 0, 30)
+af1Button.Position = UDim2.new(1, -70, 1, -140)
+af1Button.Text = "AF1"
+af1Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+af1Button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+af1Button.Parent = screenGui
+
+local rvButton = Instance.new("TextButton")
+rvButton.Size = UDim2.new(0, 60, 0, 30)
+rvButton.Position = UDim2.new(1, -70, 1, -100)
+rvButton.Text = "RV"
+rvButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+rvButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+rvButton.Parent = screenGui
+
+-- States
+local af1Active = false
+local rvActive = false
+local currentTarget = nil
+local stopLocation = CFrame.new(238.069, 2.999, -702.163) -- Location to teleport when progress is 4/4
+local questCheckPosition = Vector3.new(234.79830932617188, 2.999999523162842, -697.8255615234375) -- Location to teleport if QuestPartProgress doesn't exist
+
+-- Check if QuestPartProgress exists
+local function checkQuestPartProgress()
+    local pathway = game:GetService("Players").LocalPlayer.PlayerGui.GameUI.Quests.InformationFrame.ScrollingFrame
+    return pathway:FindFirstChild("QuestPartProgress") == nil
+end
+
+-- Tween Movement to Target Position
+local function tweenToPosition(character, targetPosition, targetLookVector)
+    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+    if humanoidRootPart then
+        local tweenInfo = TweenInfo.new(0.05) -- Faster tween
+        local tweenGoal = {CFrame = CFrame.new(targetPosition, targetPosition + targetLookVector)}
+        local tween = TweenService:Create(humanoidRootPart, tweenInfo, tweenGoal)
+        tween:Play()
+        tween.Completed:Wait()
+    end
+end
+
+-- Teleport Behind Model
+local function teleportBehindModel(character, targetModel)
+    if targetModel and targetModel.Parent then
+        local humanoidRootPart = targetModel:FindFirstChild("HumanoidRootPart")
+        if humanoidRootPart then
+            local targetPosition = humanoidRootPart.Position - humanoidRootPart.CFrame.LookVector * 5
+            local targetLookVector = humanoidRootPart.CFrame.Position - character.HumanoidRootPart.Position
+            tweenToPosition(character, targetPosition, targetLookVector.Unit)
+        end
+    end
+end
+
+-- Find Target Models
+local function findAllTargetModels()
+    local modelsToTeleport = {}
+    for _, model in pairs(workspace.AiCharacters:GetChildren()) do
+        if model:IsA("Model") and model.Name ~= game.Players.LocalPlayer.Name then
+            for _, accessory in pairs(model:GetChildren()) do
+                if accessory:IsA("Accessory") and 
+                   (accessory.Name == "PurpleHair" or 
+                    accessory.Name == "zeus" or 
+                    accessory.Name == "Meshes/hairflowersAccessory" or 
+                    accessory.Name == "AliengIRLHair" or 
+                    accessory.Name == "BlondeBraid") then
+                    table.insert(modelsToTeleport, model)
+                end
+            end
+        end
+    end
+    return modelsToTeleport
+end
+
+-- Reset Velocity Logic
+local function resetVelocity()
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
+
+    if humanoidRootPart then
+        humanoidRootPart.AssemblyLinearVelocity = Vector3.zero
+        humanoidRootPart.AssemblyAngularVelocity = Vector3.zero
+    end
+end
+
+-- Switch Target on Humanoid Death
+local function monitorHumanoidHealth(character, targetModel)
+    local humanoid = targetModel:FindFirstChildOfClass("Humanoid")
+    if humanoid then
+        humanoid.HealthChanged:Connect(function(health)
+            if health <= 0 and af1Active then
+                -- Target died, switch to a new one
+                local targetModels = findAllTargetModels()
+                for _, model in pairs(targetModels) do
+                    if model ~= targetModel then
+                        currentTarget = model
+                        teleportBehindModel(character, currentTarget)
+                        break
+                    end
+                end
+            end
+        end)
+    end
+end
+
+-- AF1 Logic
+local function teleportBehindModels(character)
+    while af1Active do
+        local humanoid = character:FindFirstChild("Humanoid")
+        if humanoid and humanoid.Health > 0 then
+            -- Check for QuestPartProgress and teleport if it doesn't exist
+            if checkQuestPartProgress() then
+                character:MoveTo(questCheckPosition)
+                wait(1) -- Delay to avoid spamming teleportation
+            else
+                local progressBar = game:GetService("Players").LocalPlayer.PlayerGui.GameUI.Quests.InformationFrame.ScrollingFrame.QuestPartProgress.Progress
+                local progressBarText = progressBar and progressBar.Text or nil
+
+                if progressBarText == "4/4" then
+                    tweenToPosition(character, stopLocation.Position, Vector3.new(0, 0, -1))
+                elseif currentTarget and currentTarget.Parent then
+                    teleportBehindModel(character, currentTarget)
+                else
+                    local targetModels = findAllTargetModels()
+                    if #targetModels > 0 then
+                        currentTarget = targetModels[1] -- Select the first available target
+                        teleportBehindModel(character, currentTarget)
+                        monitorHumanoidHealth(character, currentTarget) -- Monitor target's health
+                    else
+                        tweenToPosition(character, stopLocation.Position, Vector3.new(0, 0, -1)) -- Default loop location
+                    end
+                end
+            end
+        else
+            break
+        end
+        wait(0.05) -- Faster execution interval
+    end
+end
+
+-- Button Handlers
+af1Button.MouseButton1Click:Connect(function()
+    af1Active = not af1Active
+    af1Button.BackgroundColor3 = af1Active and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
+    if af1Active then
+        local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+        teleportBehindModels(character)
+    end
+end)
+
+rvButton.MouseButton1Click:Connect(function()
+    rvActive = not rvActive
+    rvButton.BackgroundColor3 = rvActive and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
+    while rvActive do
+        resetVelocity()
+        wait(0.1)
+    end
+end)
+
+-- Handle Respawn Logic
+local function initializeCharacter(character)
+    character:WaitForChild("HumanoidRootPart")
+    if af1Active then
+        teleportBehindModels(character)
+    end
+end
+
+game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
+    initializeCharacter(character)
+end)
+
+local currentCharacter = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+initializeCharacter(currentCharacter)
+
+-- Add GUI to Player
+screenGui.Parent = game.Players.LocalPlayer.PlayerGui
