@@ -111,9 +111,12 @@ local function monitorHumanoidHealth(character, targetModel)
     end
 end
 
--- AF1 Logic
+-- AF1 Logic: Reset the loop at the start of each execution to ensure fresh initialization
 local function teleportBehindModels(character)
+    -- Initialize/reset logic every time AF1 starts
     while af1Active do
+        -- Ensure the current target is set fresh every loop
+        currentTarget = nil
         local humanoid = character:FindFirstChild("Humanoid")
         if humanoid and humanoid.Health > 0 then
             -- Check for QuestPartProgress and teleport if it doesn't exist
