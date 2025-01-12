@@ -67,9 +67,9 @@ local function findAllTargetModels()
             for _, accessory in pairs(model:GetChildren()) do
                 if accessory:IsA("Accessory") and 
                    (accessory.Name == "PurpleHair" or 
-                    accessory.Name == "zeus" or 
+                    accessory.Name == "DragonQueenHair" or 
                     accessory.Name == "Meshes/hairflowersAccessory" or 
-                    accessory.Name == "AliengIRLHair" or 
+                    accessory.Name == "WDW_WomanHair_2" or 
                     accessory.Name == "BlondeBraid") then
                     table.insert(modelsToTeleport, model)
                 end
