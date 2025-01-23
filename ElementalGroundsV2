@@ -3,7 +3,7 @@
 
 -- Instances:
 
-local ScreenGui = Instance.new("ScreenGui")
+local elementalgroundsgui = Instance.new("ScreenGui")
 local mainframe = Instance.new("Frame")
 local autofarmsetuptab = Instance.new("TextButton")
 local AFV2tab = Instance.new("Frame")
@@ -15,11 +15,12 @@ local toggle = Instance.new("TextButton")
 
 --Properties:
 
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+elementalgroundsgui.Name = "elemental grounds gui"
+elementalgroundsgui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+elementalgroundsgui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 mainframe.Name = "main frame"
-mainframe.Parent = ScreenGui
+mainframe.Parent = elementalgroundsgui
 mainframe.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 mainframe.BorderColor3 = Color3.fromRGB(255, 0, 0)
 mainframe.BorderSizePixel = 0
@@ -94,7 +95,7 @@ autofarmcollectables.TextColor3 = Color3.fromRGB(0, 0, 0)
 autofarmcollectables.TextSize = 16.000
 
 toggle.Name = "toggle"
-toggle.Parent = ScreenGui
+toggle.Parent = elementalgroundsgui
 toggle.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 toggle.BorderSizePixel = 0
@@ -107,7 +108,7 @@ toggle.TextSize = 32.000
 
 -- Scripts:
 
-local function ETMYT_fake_script() -- autofarmsetuptab.Script 
+local function JFVPNN_fake_script() -- autofarmsetuptab.Script 
 	local script = Instance.new('Script', autofarmsetuptab)
 
 	function Click(mouse)
@@ -130,8 +131,8 @@ local function ETMYT_fake_script() -- autofarmsetuptab.Script
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(ETMYT_fake_script)()
-local function ZPCJTMW_fake_script() -- instantautofarmv2mobile.instant respawn 
+coroutine.wrap(JFVPNN_fake_script)()
+local function DSYSO_fake_script() -- instantautofarmv2mobile.instant respawn 
 	local script = Instance.new('Script', instantautofarmv2mobile)
 
 	function Click(mouse)
@@ -153,8 +154,8 @@ local function ZPCJTMW_fake_script() -- instantautofarmv2mobile.instant respawn
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(ZPCJTMW_fake_script)()
-local function LVMZZ_fake_script() -- instantautofarmv2mobile.lock camara 
+coroutine.wrap(DSYSO_fake_script)()
+local function PXLP_fake_script() -- instantautofarmv2mobile.lock camara 
 	local script = Instance.new('Script', instantautofarmv2mobile)
 
 	function Click(mouse)
@@ -206,8 +207,8 @@ local function LVMZZ_fake_script() -- instantautofarmv2mobile.lock camara
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(LVMZZ_fake_script)()
-local function CISQ_fake_script() -- instantautofarmv2mobile.launch AF gui 
+coroutine.wrap(PXLP_fake_script)()
+local function QOPR_fake_script() -- instantautofarmv2mobile.launch AF gui 
 	local script = Instance.new('Script', instantautofarmv2mobile)
 
 	function Click(mouse)
@@ -219,8 +220,8 @@ local function CISQ_fake_script() -- instantautofarmv2mobile.launch AF gui
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(CISQ_fake_script)()
-local function QUSGB_fake_script() -- instantautofarmv2mobile.remove stupid afk portal 
+coroutine.wrap(QOPR_fake_script)()
+local function SJTKHYV_fake_script() -- instantautofarmv2mobile.remove stupid afk portal 
 	local script = Instance.new('Script', instantautofarmv2mobile)
 
 	function Click(mouse)
@@ -245,8 +246,8 @@ local function QUSGB_fake_script() -- instantautofarmv2mobile.remove stupid afk 
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(QUSGB_fake_script)()
-local function IEYSLK_fake_script() -- instantautofarmv2mobile.remove forger 
+coroutine.wrap(SJTKHYV_fake_script)()
+local function QYPEL_fake_script() -- instantautofarmv2mobile.remove forger 
 	local script = Instance.new('Script', instantautofarmv2mobile)
 
 	function Click(mouse)
@@ -258,8 +259,8 @@ local function IEYSLK_fake_script() -- instantautofarmv2mobile.remove forger
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(IEYSLK_fake_script)()
-local function ZSYRIKI_fake_script() -- instantautofarmv2mobile.auto take quest 
+coroutine.wrap(QYPEL_fake_script)()
+local function CIIB_fake_script() -- instantautofarmv2mobile.auto take quest 
 	local script = Instance.new('Script', instantautofarmv2mobile)
 
 	function Click(mouse)
@@ -276,8 +277,8 @@ local function ZSYRIKI_fake_script() -- instantautofarmv2mobile.auto take quest
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(ZSYRIKI_fake_script)()
-local function IEDJ_fake_script() -- instantautofarmv2mobile.auto collect crystals 
+coroutine.wrap(CIIB_fake_script)()
+local function OBYBLNU_fake_script() -- instantautofarmv2mobile.auto collect crystals 
 	local script = Instance.new('Script', instantautofarmv2mobile)
 
 	function Click(mouse)
@@ -319,8 +320,8 @@ local function IEDJ_fake_script() -- instantautofarmv2mobile.auto collect crysta
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(IEDJ_fake_script)()
-local function YDFCC_fake_script() -- instantautofarmv2laptop.instant respawn 
+coroutine.wrap(OBYBLNU_fake_script)()
+local function OKNVLQ_fake_script() -- instantautofarmv2laptop.instant respawn 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -342,8 +343,8 @@ local function YDFCC_fake_script() -- instantautofarmv2laptop.instant respawn
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(YDFCC_fake_script)()
-local function UFWA_fake_script() -- instantautofarmv2laptop.launch AF gui 
+coroutine.wrap(OKNVLQ_fake_script)()
+local function KXLJ_fake_script() -- instantautofarmv2laptop.launch AF gui 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -355,8 +356,8 @@ local function UFWA_fake_script() -- instantautofarmv2laptop.launch AF gui
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(UFWA_fake_script)()
-local function DSIULFZ_fake_script() -- instantautofarmv2laptop.remove stupid afk portal 
+coroutine.wrap(KXLJ_fake_script)()
+local function LCDOEE_fake_script() -- instantautofarmv2laptop.remove stupid afk portal 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -381,8 +382,8 @@ local function DSIULFZ_fake_script() -- instantautofarmv2laptop.remove stupid af
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(DSIULFZ_fake_script)()
-local function SARQJ_fake_script() -- instantautofarmv2laptop.remove forger 
+coroutine.wrap(LCDOEE_fake_script)()
+local function ZKRYQ_fake_script() -- instantautofarmv2laptop.remove forger 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -394,8 +395,8 @@ local function SARQJ_fake_script() -- instantautofarmv2laptop.remove forger
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(SARQJ_fake_script)()
-local function UNDW_fake_script() -- instantautofarmv2laptop.auto take quest 
+coroutine.wrap(ZKRYQ_fake_script)()
+local function OWRZR_fake_script() -- instantautofarmv2laptop.auto take quest 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -412,8 +413,8 @@ local function UNDW_fake_script() -- instantautofarmv2laptop.auto take quest
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(UNDW_fake_script)()
-local function GEHF_fake_script() -- instantautofarmv2laptop.auto collect crystals 
+coroutine.wrap(OWRZR_fake_script)()
+local function NXLZ_fake_script() -- instantautofarmv2laptop.auto collect crystals 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -455,8 +456,8 @@ local function GEHF_fake_script() -- instantautofarmv2laptop.auto collect crysta
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(GEHF_fake_script)()
-local function NOMT_fake_script() -- instantautofarmv2laptop.auto switch tool 
+coroutine.wrap(NXLZ_fake_script)()
+local function OWCQ_fake_script() -- instantautofarmv2laptop.auto switch tool 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -464,47 +465,19 @@ local function NOMT_fake_script() -- instantautofarmv2laptop.auto switch tool
 		-- Get the player
 		local player = game.Players.LocalPlayer
 	
-		-- Create the GUI
-		local screenGui = Instance.new("ScreenGui")
-		screenGui.Parent = player:WaitForChild("PlayerGui")
-		
-	
-		-- Create the toggle button
-		local toggleButton = Instance.new("TextButton")
-		toggleButton.Size = UDim2.new(0, 150, 0, 30)
-		toggleButton.Position = UDim2.new(1, -160, 0, 50)
-		toggleButton.Text = "Start Tool Switch"
-		toggleButton.Parent = screenGui
-	
-		-- Create textboxes for delay adjustments
-		local equipDelayTextbox = Instance.new("TextBox")
-		equipDelayTextbox.Size = UDim2.new(0, 150, 0, 30)
-		equipDelayTextbox.Position = UDim2.new(1, -160, 0, 120)
-		equipDelayTextbox.Text = "Equip Delay"
-		equipDelayTextbox.Parent = screenGui
-	
-		local unequipDelayTextbox = Instance.new("TextBox")
-		unequipDelayTextbox.Size = UDim2.new(0, 150, 0, 30)
-		unequipDelayTextbox.Position = UDim2.new(1, -160, 0, 160)
-		unequipDelayTextbox.Text = "Unequip Delay"
-		unequipDelayTextbox.Parent = screenGui
-	
-		local nextToolDelayTextbox = Instance.new("TextBox")
-		nextToolDelayTextbox.Size = UDim2.new(0, 150, 0, 30)
-		nextToolDelayTextbox.Position = UDim2.new(1, -160, 0, 200)
-		nextToolDelayTextbox.Text = "Next Tool Delay"
-		nextToolDelayTextbox.Parent = screenGui
-	
 		-- Variable to track the equip loop coroutine
 		local loopCoroutine = nil
-		local equipDelay = 2 -- Default equip delay
-		local unequipDelay = 2 -- Default unequip delay
-		local nextToolDelay = 1 -- Default delay for switching to next tool
 	
 		-- Table to track tools already used in the current cycle
 		local usedTools = {}
 	
-		-- Function to set character visibility
+		-- Flag to determine if the character is active (alive and visible)
+		local isActive = false
+	
+		-- Variable to store the last equipped tool to prevent switching to the same tool twice in a row
+		local lastEquippedTool = nil
+	
+		-- Function to set character visibility and update the active state
 		local function setCharacterVisibility(isVisible)
 			local character = player.Character or player.CharacterAdded:Wait()
 			for _, part in pairs(character:GetDescendants()) do
@@ -512,59 +485,86 @@ local function NOMT_fake_script() -- instantautofarmv2laptop.auto switch tool
 					part.Transparency = isVisible and 0 or 1
 				end
 			end
-		end
 	
-		-- Function to get the next tool that hasn't been used in the cycle
-		local function getNextTool(backpack)
-			local tools = backpack:GetChildren()
-			local availableTools = {}
-	
-			-- Filter tools that haven't been used yet
-			for _, tool in pairs(tools) do
-				if not usedTools[tool.Name] then
-					table.insert(availableTools, tool)
-				end
-			end
-	
-			-- If no tools are available, reset the cycle
-			if #availableTools == 0 then
-				usedTools = {} -- Reset the cycle
-				for _, tool in pairs(tools) do
-					table.insert(availableTools, tool)
-				end
-			end
-	
-			-- Select a random tool from the available tools
-			if #availableTools > 0 then
-				local randomTool = availableTools[math.random(1, #availableTools)]
-				usedTools[randomTool.Name] = true -- Mark the tool as used
-				return randomTool
+			if isVisible then
+				print("Character became visible. Waiting 3 seconds before resuming...")
+				wait(3) -- Wait 3 seconds before resuming activity
+				isActive = true -- Update active state to true
+			else
+				isActive = false -- Update active state to false
 			end
 		end
 	
-		-- Function to equip a random tool
-		local function equipRandomTool()
+		-- Function to unequip all tools
+		local function unequipAllTools()
+			local character = player.Character or player.CharacterAdded:Wait()
 			local backpack = player:WaitForChild("Backpack")
 	
-			-- Check if player already has a tool equipped
-			if player.Character and player.Character:FindFirstChildOfClass("Tool") then
-				print("Already holding a tool!")
-				return
-			end
-	
-			local randomTool = getNextTool(backpack)
-			if randomTool then
-				randomTool.Parent = player.Character -- Equip the tool
-				print("Equipped: " .. randomTool.Name)
-				wait(equipDelay) -- Wait before unequipping
-				randomTool.Parent = backpack -- Unequip the tool
-				wait(unequipDelay) -- Delay before the next equip
-			else
-				print("No tools available!")
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					item.Parent = backpack -- Move tool back to the backpack
+				end
 			end
 		end
 	
-		-- Function to start the equip loop
+		-- Function to ensure only one tool is equipped
+		local function enforceSingleToolEquipped()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local toolsEquipped = {}
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					table.insert(toolsEquipped, item)
+				end
+			end
+	
+			-- If more than one tool is equipped, unequip all
+			if #toolsEquipped > 1 then
+				print("Multiple tools equipped! Unequipping all tools.")
+				unequipAllTools()
+			end
+		end
+	
+		-- Function to get all tools in the backpack and hotbar
+		local function getToolsInHotbarAndBackpack(backpack)
+			local tools = backpack:GetChildren()
+			local toolList = {}
+	
+			-- Assume Tool 1 is the first tool in the hotbar
+			-- and that we proceed through all other tools
+			for _, tool in pairs(tools) do
+				if tool:IsA("Tool") then
+					table.insert(toolList, tool)
+				end
+			end
+	
+			return toolList
+		end
+	
+		-- Function to equip a tool from the cycle
+		local function equipToolFromCycle(toolList, toolIndex)
+			if not isActive then return end -- Stop if the character is not active
+	
+			local tool = toolList[toolIndex]
+	
+			if tool then
+				-- Enforce single-tool policy before equipping
+				enforceSingleToolEquipped()
+	
+				tool.Parent = player.Character -- Equip the tool
+				print("Equipped: " .. tool.Name)
+	
+				-- Mark this tool as used and store it as the last equipped tool
+				lastEquippedTool = tool.Name
+	
+				wait(1) -- Reduced delay for faster switching
+				tool.Parent = player.Backpack -- Unequip the tool after switching
+			else
+				print("No tool at this index!")
+			end
+		end
+	
+		-- Function to start the equip loop from Tool 1 in the hotbar and cycle through all tools
 		local function startEquipLoop()
 			-- Stop the previous loop if it exists
 			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
@@ -573,9 +573,22 @@ local function NOMT_fake_script() -- instantautofarmv2laptop.auto switch tool
 	
 			-- Create a new loop coroutine
 			loopCoroutine = coroutine.create(function()
+				local backpack = player:WaitForChild("Backpack")
+				local toolList = getToolsInHotbarAndBackpack(backpack)
+	
+				-- Start from the first tool in the hotbar
+				local toolIndex = 1
+	
 				while true do
-					equipRandomTool()
-					wait(nextToolDelay) -- Delay between switching tools
+					equipToolFromCycle(toolList, toolIndex)
+	
+					-- Move to the next tool in the list
+					toolIndex = toolIndex + 1
+					if toolIndex > #toolList then
+						toolIndex = 1 -- Reset the cycle back to the first tool
+					end
+	
+					wait(0.5) -- Shorter delay between equipping tools for faster switching
 				end
 			end)
 	
@@ -583,70 +596,27 @@ local function NOMT_fake_script() -- instantautofarmv2laptop.auto switch tool
 			coroutine.resume(loopCoroutine)
 		end
 	
-		-- Function to stop the equip loop
-		local function stopEquipLoop()
-			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
-				coroutine.close(loopCoroutine) -- Destroy the loop
-			end
-		end
-	
-		-- Function to handle toggle button press
-		toggleButton.MouseButton1Click:Connect(function()
-			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
-				-- If the loop is running, stop it
-				stopEquipLoop()
-				toggleButton.Text = "Start Tool Switch"
-			else
-				-- Start the loop
-				startEquipLoop()
-				toggleButton.Text = "Stop Tool Switch"
-			end
-		end)
-	
-		-- Function to handle delay changes
-		equipDelayTextbox.FocusLost:Connect(function()
-			local newEquipDelay = tonumber(equipDelayTextbox.Text)
-			if newEquipDelay and newEquipDelay > 0 then
-				equipDelay = newEquipDelay
-			else
-				equipDelayTextbox.Text = "Invalid input"
-			end
-		end)
-	
-		unequipDelayTextbox.FocusLost:Connect(function()
-			local newUnequipDelay = tonumber(unequipDelayTextbox.Text)
-			if newUnequipDelay and newUnequipDelay > 0 then
-				unequipDelay = newUnequipDelay
-			else
-				unequipDelayTextbox.Text = "Invalid input"
-			end
-		end)
-	
-		nextToolDelayTextbox.FocusLost:Connect(function()
-			local newNextToolDelay = tonumber(nextToolDelayTextbox.Text)
-			if newNextToolDelay and newNextToolDelay > 0 then
-				nextToolDelay = newNextToolDelay
-			else
-				nextToolDelayTextbox.Text = "Invalid input"
-			end
-		end)
-	
 		-- Handle respawn and initialize the script
 		local function onCharacterAdded(character)
-			-- Make character visible
+			-- Set the character as visible and active after 3 seconds
 			setCharacterVisibility(true)
 	
 			-- Wait for the character to fully load
 			wait(2) -- Adjust as needed for loading time
 	
-			-- Start the equip loop if toggled on
-			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
-				startEquipLoop()
-			end
+			-- Start the equip loop
+			startEquipLoop()
 		end
 	
-		-- Connect to the CharacterAdded event
+		-- Handle character death (set inactive and stop equipping tools)
+		local function onCharacterRemoving()
+			setCharacterVisibility(false) -- Mark as inactive
+			unequipAllTools() -- Unequip all tools immediately
+		end
+	
+		-- Connect to the CharacterAdded and CharacterRemoving events
 		player.CharacterAdded:Connect(onCharacterAdded)
+		player.CharacterRemoving:Connect(onCharacterRemoving)
 	
 		-- Handle initial spawn
 		if player.Character then
@@ -658,8 +628,8 @@ local function NOMT_fake_script() -- instantautofarmv2laptop.auto switch tool
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(NOMT_fake_script)()
-local function LGJTX_fake_script() -- instantautofarmv2laptop.auto take quest 
+coroutine.wrap(OWCQ_fake_script)()
+local function ZQQO_fake_script() -- instantautofarmv2laptop.auto take quest 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -733,8 +703,1212 @@ local function LGJTX_fake_script() -- instantautofarmv2laptop.auto take quest
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(LGJTX_fake_script)()
-local function JWWG_fake_script() -- mainframe.LocalScript 
+coroutine.wrap(ZQQO_fake_script)()
+local function UCHI_fake_script() -- instantautofarmv2laptop.auto switch tool 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		-- Get the player
+		local player = game.Players.LocalPlayer
+	
+		-- Variable to track the equip loop coroutine
+		local loopCoroutine = nil
+	
+		-- Table to track tools already used in the current cycle
+		local usedTools = {}
+	
+		-- Flag to determine if the character is active (alive and visible)
+		local isActive = false
+	
+		-- Variable to store the last equipped tool to prevent switching to the same tool twice in a row
+		local lastEquippedTool = nil
+	
+		-- Function to set character visibility and update the active state
+		local function setCharacterVisibility(isVisible)
+			local character = player.Character or player.CharacterAdded:Wait()
+			for _, part in pairs(character:GetDescendants()) do
+				if part:IsA("BasePart") and part.Transparency ~= 1 then
+					part.Transparency = isVisible and 0 or 1
+				end
+			end
+	
+			if isVisible then
+				print("Character became visible. Waiting 3 seconds before resuming...")
+				wait(3) -- Wait 3 seconds before resuming activity
+				isActive = true -- Update active state to true
+			else
+				isActive = false -- Update active state to false
+			end
+		end
+	
+		-- Function to unequip all tools
+		local function unequipAllTools()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local backpack = player:WaitForChild("Backpack")
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					item.Parent = backpack -- Move tool back to the backpack
+				end
+			end
+		end
+	
+		-- Function to ensure only one tool is equipped
+		local function enforceSingleToolEquipped()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local toolsEquipped = {}
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					table.insert(toolsEquipped, item)
+				end
+			end
+	
+			-- If more than one tool is equipped, unequip all
+			if #toolsEquipped > 1 then
+				print("Multiple tools equipped! Unequipping all tools.")
+				unequipAllTools()
+			end
+		end
+	
+		-- Function to get all tools in the backpack and hotbar
+		local function getToolsInHotbarAndBackpack(backpack)
+			local tools = backpack:GetChildren()
+			local toolList = {}
+	
+			-- Assume Tool 1 is the first tool in the hotbar
+			-- and that we proceed through all other tools
+			for _, tool in pairs(tools) do
+				if tool:IsA("Tool") then
+					table.insert(toolList, tool)
+				end
+			end
+	
+			return toolList
+		end
+	
+		-- Function to equip a tool from the cycle
+		local function equipToolFromCycle(toolList, toolIndex)
+			if not isActive then return end -- Stop if the character is not active
+	
+			local tool = toolList[toolIndex]
+	
+			if tool then
+				-- Enforce single-tool policy before equipping
+				enforceSingleToolEquipped()
+	
+				tool.Parent = player.Character -- Equip the tool
+				print("Equipped: " .. tool.Name)
+	
+				-- Mark this tool as used and store it as the last equipped tool
+				lastEquippedTool = tool.Name
+	
+				wait(1) -- Reduced delay for faster switching
+				tool.Parent = player.Backpack -- Unequip the tool after switching
+			else
+				print("No tool at this index!")
+			end
+		end
+	
+		-- Function to start the equip loop from Tool 1 in the hotbar and cycle through all tools
+		local function startEquipLoop()
+			-- Stop the previous loop if it exists
+			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
+				coroutine.close(loopCoroutine) -- Destroy the old coroutine
+			end
+	
+			-- Create a new loop coroutine
+			loopCoroutine = coroutine.create(function()
+				local backpack = player:WaitForChild("Backpack")
+				local toolList = getToolsInHotbarAndBackpack(backpack)
+	
+				-- Start from the first tool in the hotbar
+				local toolIndex = 1
+	
+				while true do
+					equipToolFromCycle(toolList, toolIndex)
+	
+					-- Move to the next tool in the list
+					toolIndex = toolIndex + 1
+					if toolIndex > #toolList then
+						toolIndex = 1 -- Reset the cycle back to the first tool
+					end
+	
+					wait(0.5) -- Shorter delay between equipping tools for faster switching
+				end
+			end)
+	
+			-- Start the new coroutine
+			coroutine.resume(loopCoroutine)
+		end
+	
+		-- Handle respawn and initialize the script
+		local function onCharacterAdded(character)
+			-- Set the character as visible and active after 3 seconds
+			setCharacterVisibility(true)
+	
+			-- Wait for the character to fully load
+			wait(2) -- Adjust as needed for loading time
+	
+			-- Start the equip loop
+			startEquipLoop()
+		end
+	
+		-- Handle character death (set inactive and stop equipping tools)
+		local function onCharacterRemoving()
+			setCharacterVisibility(false) -- Mark as inactive
+			unequipAllTools() -- Unequip all tools immediately
+		end
+	
+		-- Connect to the CharacterAdded and CharacterRemoving events
+		player.CharacterAdded:Connect(onCharacterAdded)
+		player.CharacterRemoving:Connect(onCharacterRemoving)
+	
+		-- Handle initial spawn
+		if player.Character then
+			onCharacterAdded(player.Character)
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(UCHI_fake_script)()
+local function GLRWTE_fake_script() -- instantautofarmv2laptop.auto switch tool 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		-- Get the player
+		local player = game.Players.LocalPlayer
+	
+		-- Variable to track the equip loop coroutine
+		local loopCoroutine = nil
+	
+		-- Table to track tools already used in the current cycle
+		local usedTools = {}
+	
+		-- Flag to determine if the character is active (alive and visible)
+		local isActive = false
+	
+		-- Variable to store the last equipped tool to prevent switching to the same tool twice in a row
+		local lastEquippedTool = nil
+	
+		-- Function to set character visibility and update the active state
+		local function setCharacterVisibility(isVisible)
+			local character = player.Character or player.CharacterAdded:Wait()
+			for _, part in pairs(character:GetDescendants()) do
+				if part:IsA("BasePart") and part.Transparency ~= 1 then
+					part.Transparency = isVisible and 0 or 1
+				end
+			end
+	
+			if isVisible then
+				print("Character became visible. Waiting 3 seconds before resuming...")
+				wait(3) -- Wait 3 seconds before resuming activity
+				isActive = true -- Update active state to true
+			else
+				isActive = false -- Update active state to false
+			end
+		end
+	
+		-- Function to unequip all tools
+		local function unequipAllTools()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local backpack = player:WaitForChild("Backpack")
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					item.Parent = backpack -- Move tool back to the backpack
+				end
+			end
+		end
+	
+		-- Function to ensure only one tool is equipped
+		local function enforceSingleToolEquipped()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local toolsEquipped = {}
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					table.insert(toolsEquipped, item)
+				end
+			end
+	
+			-- If more than one tool is equipped, unequip all
+			if #toolsEquipped > 1 then
+				print("Multiple tools equipped! Unequipping all tools.")
+				unequipAllTools()
+			end
+		end
+	
+		-- Function to get all tools in the backpack and hotbar
+		local function getToolsInHotbarAndBackpack(backpack)
+			local tools = backpack:GetChildren()
+			local toolList = {}
+	
+			-- Assume Tool 1 is the first tool in the hotbar
+			-- and that we proceed through all other tools
+			for _, tool in pairs(tools) do
+				if tool:IsA("Tool") then
+					table.insert(toolList, tool)
+				end
+			end
+	
+			return toolList
+		end
+	
+		-- Function to equip a tool from the cycle
+		local function equipToolFromCycle(toolList, toolIndex)
+			if not isActive then return end -- Stop if the character is not active
+	
+			local tool = toolList[toolIndex]
+	
+			if tool then
+				-- Enforce single-tool policy before equipping
+				enforceSingleToolEquipped()
+	
+				tool.Parent = player.Character -- Equip the tool
+				print("Equipped: " .. tool.Name)
+	
+				-- Mark this tool as used and store it as the last equipped tool
+				lastEquippedTool = tool.Name
+	
+				wait(1) -- Reduced delay for faster switching
+				tool.Parent = player.Backpack -- Unequip the tool after switching
+			else
+				print("No tool at this index!")
+			end
+		end
+	
+		-- Function to start the equip loop from Tool 1 in the hotbar and cycle through all tools
+		local function startEquipLoop()
+			-- Stop the previous loop if it exists
+			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
+				coroutine.close(loopCoroutine) -- Destroy the old coroutine
+			end
+	
+			-- Create a new loop coroutine
+			loopCoroutine = coroutine.create(function()
+				local backpack = player:WaitForChild("Backpack")
+				local toolList = getToolsInHotbarAndBackpack(backpack)
+	
+				-- Start from the first tool in the hotbar
+				local toolIndex = 1
+	
+				while true do
+					equipToolFromCycle(toolList, toolIndex)
+	
+					-- Move to the next tool in the list
+					toolIndex = toolIndex + 1
+					if toolIndex > #toolList then
+						toolIndex = 1 -- Reset the cycle back to the first tool
+					end
+	
+					wait(0.5) -- Shorter delay between equipping tools for faster switching
+				end
+			end)
+	
+			-- Start the new coroutine
+			coroutine.resume(loopCoroutine)
+		end
+	
+		-- Handle respawn and initialize the script
+		local function onCharacterAdded(character)
+			-- Set the character as visible and active after 3 seconds
+			setCharacterVisibility(true)
+	
+			-- Wait for the character to fully load
+			wait(2) -- Adjust as needed for loading time
+	
+			-- Start the equip loop
+			startEquipLoop()
+		end
+	
+		-- Handle character death (set inactive and stop equipping tools)
+		local function onCharacterRemoving()
+			setCharacterVisibility(false) -- Mark as inactive
+			unequipAllTools() -- Unequip all tools immediately
+		end
+	
+		-- Connect to the CharacterAdded and CharacterRemoving events
+		player.CharacterAdded:Connect(onCharacterAdded)
+		player.CharacterRemoving:Connect(onCharacterRemoving)
+	
+		-- Handle initial spawn
+		if player.Character then
+			onCharacterAdded(player.Character)
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(GLRWTE_fake_script)()
+local function FVLAZJW_fake_script() -- instantautofarmv2laptop.auto switch tool 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		-- Get the player
+		local player = game.Players.LocalPlayer
+	
+		-- Variable to track the equip loop coroutine
+		local loopCoroutine = nil
+	
+		-- Table to track tools already used in the current cycle
+		local usedTools = {}
+	
+		-- Flag to determine if the character is active (alive and visible)
+		local isActive = false
+	
+		-- Variable to store the last equipped tool to prevent switching to the same tool twice in a row
+		local lastEquippedTool = nil
+	
+		-- Function to set character visibility and update the active state
+		local function setCharacterVisibility(isVisible)
+			local character = player.Character or player.CharacterAdded:Wait()
+			for _, part in pairs(character:GetDescendants()) do
+				if part:IsA("BasePart") and part.Transparency ~= 1 then
+					part.Transparency = isVisible and 0 or 1
+				end
+			end
+	
+			if isVisible then
+				print("Character became visible. Waiting 3 seconds before resuming...")
+				wait(3) -- Wait 3 seconds before resuming activity
+				isActive = true -- Update active state to true
+			else
+				isActive = false -- Update active state to false
+			end
+		end
+	
+		-- Function to unequip all tools
+		local function unequipAllTools()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local backpack = player:WaitForChild("Backpack")
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					item.Parent = backpack -- Move tool back to the backpack
+				end
+			end
+		end
+	
+		-- Function to ensure only one tool is equipped
+		local function enforceSingleToolEquipped()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local toolsEquipped = {}
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					table.insert(toolsEquipped, item)
+				end
+			end
+	
+			-- If more than one tool is equipped, unequip all
+			if #toolsEquipped > 1 then
+				print("Multiple tools equipped! Unequipping all tools.")
+				unequipAllTools()
+			end
+		end
+	
+		-- Function to get all tools in the backpack and hotbar
+		local function getToolsInHotbarAndBackpack(backpack)
+			local tools = backpack:GetChildren()
+			local toolList = {}
+	
+			-- Assume Tool 1 is the first tool in the hotbar
+			-- and that we proceed through all other tools
+			for _, tool in pairs(tools) do
+				if tool:IsA("Tool") then
+					table.insert(toolList, tool)
+				end
+			end
+	
+			return toolList
+		end
+	
+		-- Function to equip a tool from the cycle
+		local function equipToolFromCycle(toolList, toolIndex)
+			if not isActive then return end -- Stop if the character is not active
+	
+			local tool = toolList[toolIndex]
+	
+			if tool then
+				-- Enforce single-tool policy before equipping
+				enforceSingleToolEquipped()
+	
+				tool.Parent = player.Character -- Equip the tool
+				print("Equipped: " .. tool.Name)
+	
+				-- Mark this tool as used and store it as the last equipped tool
+				lastEquippedTool = tool.Name
+	
+				wait(1) -- Reduced delay for faster switching
+				tool.Parent = player.Backpack -- Unequip the tool after switching
+			else
+				print("No tool at this index!")
+			end
+		end
+	
+		-- Function to start the equip loop from Tool 1 in the hotbar and cycle through all tools
+		local function startEquipLoop()
+			-- Stop the previous loop if it exists
+			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
+				coroutine.close(loopCoroutine) -- Destroy the old coroutine
+			end
+	
+			-- Create a new loop coroutine
+			loopCoroutine = coroutine.create(function()
+				local backpack = player:WaitForChild("Backpack")
+				local toolList = getToolsInHotbarAndBackpack(backpack)
+	
+				-- Start from the first tool in the hotbar
+				local toolIndex = 1
+	
+				while true do
+					equipToolFromCycle(toolList, toolIndex)
+	
+					-- Move to the next tool in the list
+					toolIndex = toolIndex + 1
+					if toolIndex > #toolList then
+						toolIndex = 1 -- Reset the cycle back to the first tool
+					end
+	
+					wait(0.5) -- Shorter delay between equipping tools for faster switching
+				end
+			end)
+	
+			-- Start the new coroutine
+			coroutine.resume(loopCoroutine)
+		end
+	
+		-- Handle respawn and initialize the script
+		local function onCharacterAdded(character)
+			-- Set the character as visible and active after 3 seconds
+			setCharacterVisibility(true)
+	
+			-- Wait for the character to fully load
+			wait(2) -- Adjust as needed for loading time
+	
+			-- Start the equip loop
+			startEquipLoop()
+		end
+	
+		-- Handle character death (set inactive and stop equipping tools)
+		local function onCharacterRemoving()
+			setCharacterVisibility(false) -- Mark as inactive
+			unequipAllTools() -- Unequip all tools immediately
+		end
+	
+		-- Connect to the CharacterAdded and CharacterRemoving events
+		player.CharacterAdded:Connect(onCharacterAdded)
+		player.CharacterRemoving:Connect(onCharacterRemoving)
+	
+		-- Handle initial spawn
+		if player.Character then
+			onCharacterAdded(player.Character)
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(FVLAZJW_fake_script)()
+local function KQDK_fake_script() -- instantautofarmv2laptop.auto switch tool 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		-- Get the player
+		local player = game.Players.LocalPlayer
+	
+		-- Variable to track the equip loop coroutine
+		local loopCoroutine = nil
+	
+		-- Table to track tools already used in the current cycle
+		local usedTools = {}
+	
+		-- Flag to determine if the character is active (alive and visible)
+		local isActive = false
+	
+		-- Variable to store the last equipped tool to prevent switching to the same tool twice in a row
+		local lastEquippedTool = nil
+	
+		-- Function to set character visibility and update the active state
+		local function setCharacterVisibility(isVisible)
+			local character = player.Character or player.CharacterAdded:Wait()
+			for _, part in pairs(character:GetDescendants()) do
+				if part:IsA("BasePart") and part.Transparency ~= 1 then
+					part.Transparency = isVisible and 0 or 1
+				end
+			end
+	
+			if isVisible then
+				print("Character became visible. Waiting 3 seconds before resuming...")
+				wait(3) -- Wait 3 seconds before resuming activity
+				isActive = true -- Update active state to true
+			else
+				isActive = false -- Update active state to false
+			end
+		end
+	
+		-- Function to unequip all tools
+		local function unequipAllTools()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local backpack = player:WaitForChild("Backpack")
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					item.Parent = backpack -- Move tool back to the backpack
+				end
+			end
+		end
+	
+		-- Function to ensure only one tool is equipped
+		local function enforceSingleToolEquipped()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local toolsEquipped = {}
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					table.insert(toolsEquipped, item)
+				end
+			end
+	
+			-- If more than one tool is equipped, unequip all
+			if #toolsEquipped > 1 then
+				print("Multiple tools equipped! Unequipping all tools.")
+				unequipAllTools()
+			end
+		end
+	
+		-- Function to get all tools in the backpack and hotbar
+		local function getToolsInHotbarAndBackpack(backpack)
+			local tools = backpack:GetChildren()
+			local toolList = {}
+	
+			-- Assume Tool 1 is the first tool in the hotbar
+			-- and that we proceed through all other tools
+			for _, tool in pairs(tools) do
+				if tool:IsA("Tool") then
+					table.insert(toolList, tool)
+				end
+			end
+	
+			return toolList
+		end
+	
+		-- Function to equip a tool from the cycle
+		local function equipToolFromCycle(toolList, toolIndex)
+			if not isActive then return end -- Stop if the character is not active
+	
+			local tool = toolList[toolIndex]
+	
+			if tool then
+				-- Enforce single-tool policy before equipping
+				enforceSingleToolEquipped()
+	
+				tool.Parent = player.Character -- Equip the tool
+				print("Equipped: " .. tool.Name)
+	
+				-- Mark this tool as used and store it as the last equipped tool
+				lastEquippedTool = tool.Name
+	
+				wait(1) -- Reduced delay for faster switching
+				tool.Parent = player.Backpack -- Unequip the tool after switching
+			else
+				print("No tool at this index!")
+			end
+		end
+	
+		-- Function to start the equip loop from Tool 1 in the hotbar and cycle through all tools
+		local function startEquipLoop()
+			-- Stop the previous loop if it exists
+			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
+				coroutine.close(loopCoroutine) -- Destroy the old coroutine
+			end
+	
+			-- Create a new loop coroutine
+			loopCoroutine = coroutine.create(function()
+				local backpack = player:WaitForChild("Backpack")
+				local toolList = getToolsInHotbarAndBackpack(backpack)
+	
+				-- Start from the first tool in the hotbar
+				local toolIndex = 1
+	
+				while true do
+					equipToolFromCycle(toolList, toolIndex)
+	
+					-- Move to the next tool in the list
+					toolIndex = toolIndex + 1
+					if toolIndex > #toolList then
+						toolIndex = 1 -- Reset the cycle back to the first tool
+					end
+	
+					wait(0.5) -- Shorter delay between equipping tools for faster switching
+				end
+			end)
+	
+			-- Start the new coroutine
+			coroutine.resume(loopCoroutine)
+		end
+	
+		-- Handle respawn and initialize the script
+		local function onCharacterAdded(character)
+			-- Set the character as visible and active after 3 seconds
+			setCharacterVisibility(true)
+	
+			-- Wait for the character to fully load
+			wait(2) -- Adjust as needed for loading time
+	
+			-- Start the equip loop
+			startEquipLoop()
+		end
+	
+		-- Handle character death (set inactive and stop equipping tools)
+		local function onCharacterRemoving()
+			setCharacterVisibility(false) -- Mark as inactive
+			unequipAllTools() -- Unequip all tools immediately
+		end
+	
+		-- Connect to the CharacterAdded and CharacterRemoving events
+		player.CharacterAdded:Connect(onCharacterAdded)
+		player.CharacterRemoving:Connect(onCharacterRemoving)
+	
+		-- Handle initial spawn
+		if player.Character then
+			onCharacterAdded(player.Character)
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(KQDK_fake_script)()
+local function NEFNOR_fake_script() -- instantautofarmv2laptop.auto switch tool 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		-- Get the player
+		local player = game.Players.LocalPlayer
+	
+		-- Variable to track the equip loop coroutine
+		local loopCoroutine = nil
+	
+		-- Table to track tools already used in the current cycle
+		local usedTools = {}
+	
+		-- Flag to determine if the character is active (alive and visible)
+		local isActive = false
+	
+		-- Variable to store the last equipped tool to prevent switching to the same tool twice in a row
+		local lastEquippedTool = nil
+	
+		-- Function to set character visibility and update the active state
+		local function setCharacterVisibility(isVisible)
+			local character = player.Character or player.CharacterAdded:Wait()
+			for _, part in pairs(character:GetDescendants()) do
+				if part:IsA("BasePart") and part.Transparency ~= 1 then
+					part.Transparency = isVisible and 0 or 1
+				end
+			end
+	
+			if isVisible then
+				print("Character became visible. Waiting 3 seconds before resuming...")
+				wait(3) -- Wait 3 seconds before resuming activity
+				isActive = true -- Update active state to true
+			else
+				isActive = false -- Update active state to false
+			end
+		end
+	
+		-- Function to unequip all tools
+		local function unequipAllTools()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local backpack = player:WaitForChild("Backpack")
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					item.Parent = backpack -- Move tool back to the backpack
+				end
+			end
+		end
+	
+		-- Function to ensure only one tool is equipped
+		local function enforceSingleToolEquipped()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local toolsEquipped = {}
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					table.insert(toolsEquipped, item)
+				end
+			end
+	
+			-- If more than one tool is equipped, unequip all
+			if #toolsEquipped > 1 then
+				print("Multiple tools equipped! Unequipping all tools.")
+				unequipAllTools()
+			end
+		end
+	
+		-- Function to get all tools in the backpack and hotbar
+		local function getToolsInHotbarAndBackpack(backpack)
+			local tools = backpack:GetChildren()
+			local toolList = {}
+	
+			-- Assume Tool 1 is the first tool in the hotbar
+			-- and that we proceed through all other tools
+			for _, tool in pairs(tools) do
+				if tool:IsA("Tool") then
+					table.insert(toolList, tool)
+				end
+			end
+	
+			return toolList
+		end
+	
+		-- Function to equip a tool from the cycle
+		local function equipToolFromCycle(toolList, toolIndex)
+			if not isActive then return end -- Stop if the character is not active
+	
+			local tool = toolList[toolIndex]
+	
+			if tool then
+				-- Enforce single-tool policy before equipping
+				enforceSingleToolEquipped()
+	
+				tool.Parent = player.Character -- Equip the tool
+				print("Equipped: " .. tool.Name)
+	
+				-- Mark this tool as used and store it as the last equipped tool
+				lastEquippedTool = tool.Name
+	
+				wait(1) -- Reduced delay for faster switching
+				tool.Parent = player.Backpack -- Unequip the tool after switching
+			else
+				print("No tool at this index!")
+			end
+		end
+	
+		-- Function to start the equip loop from Tool 1 in the hotbar and cycle through all tools
+		local function startEquipLoop()
+			-- Stop the previous loop if it exists
+			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
+				coroutine.close(loopCoroutine) -- Destroy the old coroutine
+			end
+	
+			-- Create a new loop coroutine
+			loopCoroutine = coroutine.create(function()
+				local backpack = player:WaitForChild("Backpack")
+				local toolList = getToolsInHotbarAndBackpack(backpack)
+	
+				-- Start from the first tool in the hotbar
+				local toolIndex = 1
+	
+				while true do
+					equipToolFromCycle(toolList, toolIndex)
+	
+					-- Move to the next tool in the list
+					toolIndex = toolIndex + 1
+					if toolIndex > #toolList then
+						toolIndex = 1 -- Reset the cycle back to the first tool
+					end
+	
+					wait(0.5) -- Shorter delay between equipping tools for faster switching
+				end
+			end)
+	
+			-- Start the new coroutine
+			coroutine.resume(loopCoroutine)
+		end
+	
+		-- Handle respawn and initialize the script
+		local function onCharacterAdded(character)
+			-- Set the character as visible and active after 3 seconds
+			setCharacterVisibility(true)
+	
+			-- Wait for the character to fully load
+			wait(2) -- Adjust as needed for loading time
+	
+			-- Start the equip loop
+			startEquipLoop()
+		end
+	
+		-- Handle character death (set inactive and stop equipping tools)
+		local function onCharacterRemoving()
+			setCharacterVisibility(false) -- Mark as inactive
+			unequipAllTools() -- Unequip all tools immediately
+		end
+	
+		-- Connect to the CharacterAdded and CharacterRemoving events
+		player.CharacterAdded:Connect(onCharacterAdded)
+		player.CharacterRemoving:Connect(onCharacterRemoving)
+	
+		-- Handle initial spawn
+		if player.Character then
+			onCharacterAdded(player.Character)
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(NEFNOR_fake_script)()
+local function WUOVVLS_fake_script() -- instantautofarmv2laptop.auto switch tool 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		-- Get the player
+		local player = game.Players.LocalPlayer
+	
+		-- Variable to track the equip loop coroutine
+		local loopCoroutine = nil
+	
+		-- Table to track tools already used in the current cycle
+		local usedTools = {}
+	
+		-- Flag to determine if the character is active (alive and visible)
+		local isActive = false
+	
+		-- Variable to store the last equipped tool to prevent switching to the same tool twice in a row
+		local lastEquippedTool = nil
+	
+		-- Function to set character visibility and update the active state
+		local function setCharacterVisibility(isVisible)
+			local character = player.Character or player.CharacterAdded:Wait()
+			for _, part in pairs(character:GetDescendants()) do
+				if part:IsA("BasePart") and part.Transparency ~= 1 then
+					part.Transparency = isVisible and 0 or 1
+				end
+			end
+	
+			if isVisible then
+				print("Character became visible. Waiting 3 seconds before resuming...")
+				wait(3) -- Wait 3 seconds before resuming activity
+				isActive = true -- Update active state to true
+			else
+				isActive = false -- Update active state to false
+			end
+		end
+	
+		-- Function to unequip all tools
+		local function unequipAllTools()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local backpack = player:WaitForChild("Backpack")
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					item.Parent = backpack -- Move tool back to the backpack
+				end
+			end
+		end
+	
+		-- Function to ensure only one tool is equipped
+		local function enforceSingleToolEquipped()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local toolsEquipped = {}
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					table.insert(toolsEquipped, item)
+				end
+			end
+	
+			-- If more than one tool is equipped, unequip all
+			if #toolsEquipped > 1 then
+				print("Multiple tools equipped! Unequipping all tools.")
+				unequipAllTools()
+			end
+		end
+	
+		-- Function to get all tools in the backpack and hotbar
+		local function getToolsInHotbarAndBackpack(backpack)
+			local tools = backpack:GetChildren()
+			local toolList = {}
+	
+			-- Assume Tool 1 is the first tool in the hotbar
+			-- and that we proceed through all other tools
+			for _, tool in pairs(tools) do
+				if tool:IsA("Tool") then
+					table.insert(toolList, tool)
+				end
+			end
+	
+			return toolList
+		end
+	
+		-- Function to equip a tool from the cycle
+		local function equipToolFromCycle(toolList, toolIndex)
+			if not isActive then return end -- Stop if the character is not active
+	
+			local tool = toolList[toolIndex]
+	
+			if tool then
+				-- Enforce single-tool policy before equipping
+				enforceSingleToolEquipped()
+	
+				tool.Parent = player.Character -- Equip the tool
+				print("Equipped: " .. tool.Name)
+	
+				-- Mark this tool as used and store it as the last equipped tool
+				lastEquippedTool = tool.Name
+	
+				wait(1) -- Reduced delay for faster switching
+				tool.Parent = player.Backpack -- Unequip the tool after switching
+			else
+				print("No tool at this index!")
+			end
+		end
+	
+		-- Function to start the equip loop from Tool 1 in the hotbar and cycle through all tools
+		local function startEquipLoop()
+			-- Stop the previous loop if it exists
+			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
+				coroutine.close(loopCoroutine) -- Destroy the old coroutine
+			end
+	
+			-- Create a new loop coroutine
+			loopCoroutine = coroutine.create(function()
+				local backpack = player:WaitForChild("Backpack")
+				local toolList = getToolsInHotbarAndBackpack(backpack)
+	
+				-- Start from the first tool in the hotbar
+				local toolIndex = 1
+	
+				while true do
+					equipToolFromCycle(toolList, toolIndex)
+	
+					-- Move to the next tool in the list
+					toolIndex = toolIndex + 1
+					if toolIndex > #toolList then
+						toolIndex = 1 -- Reset the cycle back to the first tool
+					end
+	
+					wait(0.5) -- Shorter delay between equipping tools for faster switching
+				end
+			end)
+	
+			-- Start the new coroutine
+			coroutine.resume(loopCoroutine)
+		end
+	
+		-- Handle respawn and initialize the script
+		local function onCharacterAdded(character)
+			-- Set the character as visible and active after 3 seconds
+			setCharacterVisibility(true)
+	
+			-- Wait for the character to fully load
+			wait(2) -- Adjust as needed for loading time
+	
+			-- Start the equip loop
+			startEquipLoop()
+		end
+	
+		-- Handle character death (set inactive and stop equipping tools)
+		local function onCharacterRemoving()
+			setCharacterVisibility(false) -- Mark as inactive
+			unequipAllTools() -- Unequip all tools immediately
+		end
+	
+		-- Connect to the CharacterAdded and CharacterRemoving events
+		player.CharacterAdded:Connect(onCharacterAdded)
+		player.CharacterRemoving:Connect(onCharacterRemoving)
+	
+		-- Handle initial spawn
+		if player.Character then
+			onCharacterAdded(player.Character)
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(WUOVVLS_fake_script)()
+local function NOWYJIL_fake_script() -- instantautofarmv2laptop.auto switch tool 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		-- Get the player
+		local player = game.Players.LocalPlayer
+	
+		-- Variable to track the equip loop coroutine
+		local loopCoroutine = nil
+	
+		-- Table to track tools already used in the current cycle
+		local usedTools = {}
+	
+		-- Flag to determine if the character is active (alive and visible)
+		local isActive = false
+	
+		-- Variable to store the last equipped tool to prevent switching to the same tool twice in a row
+		local lastEquippedTool = nil
+	
+		-- Function to set character visibility and update the active state
+		local function setCharacterVisibility(isVisible)
+			local character = player.Character or player.CharacterAdded:Wait()
+			for _, part in pairs(character:GetDescendants()) do
+				if part:IsA("BasePart") and part.Transparency ~= 1 then
+					part.Transparency = isVisible and 0 or 1
+				end
+			end
+	
+			if isVisible then
+				print("Character became visible. Waiting 3 seconds before resuming...")
+				wait(3) -- Wait 3 seconds before resuming activity
+				isActive = true -- Update active state to true
+			else
+				isActive = false -- Update active state to false
+			end
+		end
+	
+		-- Function to unequip all tools
+		local function unequipAllTools()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local backpack = player:WaitForChild("Backpack")
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					item.Parent = backpack -- Move tool back to the backpack
+				end
+			end
+		end
+	
+		-- Function to ensure only one tool is equipped
+		local function enforceSingleToolEquipped()
+			local character = player.Character or player.CharacterAdded:Wait()
+			local toolsEquipped = {}
+	
+			for _, item in pairs(character:GetChildren()) do
+				if item:IsA("Tool") then
+					table.insert(toolsEquipped, item)
+				end
+			end
+	
+			-- If more than one tool is equipped, unequip all
+			if #toolsEquipped > 1 then
+				print("Multiple tools equipped! Unequipping all tools.")
+				unequipAllTools()
+			end
+		end
+	
+		-- Function to get all tools in the backpack and hotbar
+		local function getToolsInHotbarAndBackpack(backpack)
+			local tools = backpack:GetChildren()
+			local toolList = {}
+	
+			-- Assume Tool 1 is the first tool in the hotbar
+			-- and that we proceed through all other tools
+			for _, tool in pairs(tools) do
+				if tool:IsA("Tool") then
+					table.insert(toolList, tool)
+				end
+			end
+	
+			return toolList
+		end
+	
+		-- Function to equip a tool from the cycle
+		local function equipToolFromCycle(toolList, toolIndex)
+			if not isActive then return end -- Stop if the character is not active
+	
+			local tool = toolList[toolIndex]
+	
+			if tool then
+				-- Enforce single-tool policy before equipping
+				enforceSingleToolEquipped()
+	
+				tool.Parent = player.Character -- Equip the tool
+				print("Equipped: " .. tool.Name)
+	
+				-- Mark this tool as used and store it as the last equipped tool
+				lastEquippedTool = tool.Name
+	
+				wait(1) -- Reduced delay for faster switching
+				tool.Parent = player.Backpack -- Unequip the tool after switching
+			else
+				print("No tool at this index!")
+			end
+		end
+	
+		-- Function to start the equip loop from Tool 1 in the hotbar and cycle through all tools
+		local function startEquipLoop()
+			-- Stop the previous loop if it exists
+			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
+				coroutine.close(loopCoroutine) -- Destroy the old coroutine
+			end
+	
+			-- Create a new loop coroutine
+			loopCoroutine = coroutine.create(function()
+				local backpack = player:WaitForChild("Backpack")
+				local toolList = getToolsInHotbarAndBackpack(backpack)
+	
+				-- Start from the first tool in the hotbar
+				local toolIndex = 1
+	
+				while true do
+					equipToolFromCycle(toolList, toolIndex)
+	
+					-- Move to the next tool in the list
+					toolIndex = toolIndex + 1
+					if toolIndex > #toolList then
+						toolIndex = 1 -- Reset the cycle back to the first tool
+					end
+	
+					wait(0.5) -- Shorter delay between equipping tools for faster switching
+				end
+			end)
+	
+			-- Start the new coroutine
+			coroutine.resume(loopCoroutine)
+		end
+	
+		-- Handle respawn and initialize the script
+		local function onCharacterAdded(character)
+			-- Set the character as visible and active after 3 seconds
+			setCharacterVisibility(true)
+	
+			-- Wait for the character to fully load
+			wait(2) -- Adjust as needed for loading time
+	
+			-- Start the equip loop
+			startEquipLoop()
+		end
+	
+		-- Handle character death (set inactive and stop equipping tools)
+		local function onCharacterRemoving()
+			setCharacterVisibility(false) -- Mark as inactive
+			unequipAllTools() -- Unequip all tools immediately
+		end
+	
+		-- Connect to the CharacterAdded and CharacterRemoving events
+		player.CharacterAdded:Connect(onCharacterAdded)
+		player.CharacterRemoving:Connect(onCharacterRemoving)
+	
+		-- Handle initial spawn
+		if player.Character then
+			onCharacterAdded(player.Character)
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(NOWYJIL_fake_script)()
+local function XEQSMW_fake_script() -- mainframe.LocalScript 
 	local script = Instance.new('LocalScript', mainframe)
 
 	local dragger = {}; 
@@ -781,8 +1955,8 @@ local function JWWG_fake_script() -- mainframe.LocalScript
 	script.Parent.Active = true
 	script.Parent.Draggable = true
 end
-coroutine.wrap(JWWG_fake_script)()
-local function WXZAPE_fake_script() -- toggle.LocalScript 
+coroutine.wrap(XEQSMW_fake_script)()
+local function UBHHTJ_fake_script() -- toggle.LocalScript 
 	local script = Instance.new('LocalScript', toggle)
 
 	local dragger = {}; 
@@ -829,8 +2003,8 @@ local function WXZAPE_fake_script() -- toggle.LocalScript
 	script.Parent.Active = true
 	script.Parent.Draggable = true
 end
-coroutine.wrap(WXZAPE_fake_script)()
-local function QIEQKID_fake_script() -- toggle.LocalScript 
+coroutine.wrap(UBHHTJ_fake_script)()
+local function NFOUOF_fake_script() -- toggle.LocalScript 
 	local script = Instance.new('LocalScript', toggle)
 
 	local back = script.Parent.Parent["main frame"]
@@ -860,4 +2034,4 @@ local function QIEQKID_fake_script() -- toggle.LocalScript
 	
 	end)
 end
-coroutine.wrap(QIEQKID_fake_script)()
+coroutine.wrap(NFOUOF_fake_script)()
