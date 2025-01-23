@@ -1,0 +1,863 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local mainframe = Instance.new("Frame")
+local autofarmsetuptab = Instance.new("TextButton")
+local AFV2tab = Instance.new("Frame")
+local instantautofarmv2mobile = Instance.new("TextButton")
+local TextLabel = Instance.new("TextLabel")
+local instantautofarmv2laptop = Instance.new("TextButton")
+local autofarmcollectables = Instance.new("TextButton")
+local toggle = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+mainframe.Name = "main frame"
+mainframe.Parent = ScreenGui
+mainframe.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+mainframe.BorderColor3 = Color3.fromRGB(255, 0, 0)
+mainframe.BorderSizePixel = 0
+mainframe.Position = UDim2.new(0.34368366, 0, 0.229766801, 0)
+mainframe.Size = UDim2.new(0, 399, 0, 239)
+
+autofarmsetuptab.Name = "auto farm setup tab"
+autofarmsetuptab.Parent = mainframe
+autofarmsetuptab.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+autofarmsetuptab.BorderColor3 = Color3.fromRGB(0, 0, 0)
+autofarmsetuptab.BorderSizePixel = 0
+autofarmsetuptab.Size = UDim2.new(0, 101, 0, 50)
+autofarmsetuptab.Font = Enum.Font.SourceSansBold
+autofarmsetuptab.Text = "AF V2 setup"
+autofarmsetuptab.TextColor3 = Color3.fromRGB(0, 0, 0)
+autofarmsetuptab.TextSize = 17.000
+
+AFV2tab.Name = "AF V2 tab"
+AFV2tab.Parent = mainframe
+AFV2tab.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+AFV2tab.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AFV2tab.BorderSizePixel = 0
+AFV2tab.Position = UDim2.new(0.25313282, 0, 0, 0)
+AFV2tab.Size = UDim2.new(0, 298, 0, 239)
+
+instantautofarmv2mobile.Name = "instant auto farm v2 mobile"
+instantautofarmv2mobile.Parent = AFV2tab
+instantautofarmv2mobile.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+instantautofarmv2mobile.BorderColor3 = Color3.fromRGB(0, 0, 0)
+instantautofarmv2mobile.BorderSizePixel = 0
+instantautofarmv2mobile.Size = UDim2.new(0, 298, 0, 50)
+instantautofarmv2mobile.Font = Enum.Font.SourceSansBold
+instantautofarmv2mobile.Text = "auto farmv2 instant setup (mobile)"
+instantautofarmv2mobile.TextColor3 = Color3.fromRGB(0, 0, 0)
+instantautofarmv2mobile.TextSize = 22.000
+instantautofarmv2mobile.TextStrokeColor3 = Color3.fromRGB(255, 0, 0)
+
+TextLabel.Parent = AFV2tab
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(-0.00335570471, 0, 0.230125517, 0)
+TextLabel.Size = UDim2.new(0, 298, 0, 50)
+TextLabel.Font = Enum.Font.SourceSansBold
+TextLabel.Text = "auto collect crystals already is  implented"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextSize = 19.000
+
+instantautofarmv2laptop.Name = "instant auto farm v2 laptop"
+instantautofarmv2laptop.Parent = AFV2tab
+instantautofarmv2laptop.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+instantautofarmv2laptop.BorderColor3 = Color3.fromRGB(0, 0, 0)
+instantautofarmv2laptop.BorderSizePixel = 0
+instantautofarmv2laptop.Position = UDim2.new(0, 0, 0.476987451, 0)
+instantautofarmv2laptop.Size = UDim2.new(0, 298, 0, 50)
+instantautofarmv2laptop.Font = Enum.Font.SourceSansBold
+instantautofarmv2laptop.Text = "auto farmv2 instant setup (laptop/pc)"
+instantautofarmv2laptop.TextColor3 = Color3.fromRGB(0, 0, 0)
+instantautofarmv2laptop.TextSize = 22.000
+instantautofarmv2laptop.TextStrokeColor3 = Color3.fromRGB(255, 0, 0)
+
+autofarmcollectables.Name = "auto farm collectables"
+autofarmcollectables.Parent = mainframe
+autofarmcollectables.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+autofarmcollectables.BorderColor3 = Color3.fromRGB(0, 0, 0)
+autofarmcollectables.BorderSizePixel = 0
+autofarmcollectables.Position = UDim2.new(-0.00343448948, 0, 0.2271339, 0)
+autofarmcollectables.Size = UDim2.new(0, 101, 0, 50)
+autofarmcollectables.Font = Enum.Font.SourceSansBold
+autofarmcollectables.Text = "unfinished"
+autofarmcollectables.TextColor3 = Color3.fromRGB(0, 0, 0)
+autofarmcollectables.TextSize = 16.000
+
+toggle.Name = "toggle"
+toggle.Parent = ScreenGui
+toggle.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+toggle.BorderSizePixel = 0
+toggle.Position = UDim2.new(0.483678371, 0, 0.0720164627, 0)
+toggle.Size = UDim2.new(0, 28, 0, 28)
+toggle.Font = Enum.Font.SourceSansBold
+toggle.Text = "X"
+toggle.TextColor3 = Color3.fromRGB(0, 0, 0)
+toggle.TextSize = 32.000
+
+-- Scripts:
+
+local function ETMYT_fake_script() -- autofarmsetuptab.Script 
+	local script = Instance.new('Script', autofarmsetuptab)
+
+	function Click(mouse)
+	
+		local frame = game.StarterGui.ScreenGui.Frame["AF V2 tab"]
+	
+		-- Set the initial state
+		frame.Visible = true
+	
+		-- Create a function to toggle visibility
+		local function toggleVisibility()
+			frame.Visible = not frame.Visible
+		end
+	
+		-- Connect the function to an event (e.g., MouseButtonClick)
+		frame.MouseButton1Click:Connect(toggleVisibility)
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(ETMYT_fake_script)()
+local function ZPCJTMW_fake_script() -- instantautofarmv2mobile.instant respawn 
+	local script = Instance.new('Script', instantautofarmv2mobile)
+
+	function Click(mouse)
+	
+		_G.toggle = true
+	
+	
+		while _G.toggle do
+			wait(0.4)
+			local args = {
+				[1] = 3
+			}
+	
+			game:GetService("ReplicatedStorage").ClientRemotes.SpawnHandler:FireServer(unpack(args))
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(ZPCJTMW_fake_script)()
+local function LVMZZ_fake_script() -- instantautofarmv2mobile.lock camara 
+	local script = Instance.new('Script', instantautofarmv2mobile)
+
+	function Click(mouse)
+	
+		local RunService = game:GetService("RunService")
+		local Workspace = game:GetService("Workspace")
+		local Players = game:GetService("Players")
+	
+		local LocalPlayer = Players.LocalPlayer
+		local camera = Workspace.CurrentCamera
+	
+		-- World position to lock the camera at (separated from character)
+		local lockedPosition = Vector3.new(0, 0, 0)
+	
+		-- Function to lock the camera
+		local function lockCamera()
+			-- Set the camera to Scriptable mode and disable following the character
+			camera.CameraSubject = nil
+			camera.CameraType = Enum.CameraType.Scriptable
+	
+			-- Continuous loop on Heartbeat to keep the camera at (0, 0, 0)
+			while true do
+				if camera then
+					camera.CFrame = CFrame.new(lockedPosition)
+				end
+				RunService.Heartbeat:Wait() -- Ensure this runs every frame
+			end
+		end
+	
+		-- Ensure the camera lock function runs on respawn as well
+		LocalPlayer.CharacterAdded:Connect(function()
+			-- Wait a bit to ensure the character has fully loaded
+			wait(2)
+	
+			-- Lock the camera once the player respawns
+			lockCamera()
+		end)
+	
+		-- If the player is already in the game, lock the camera immediately
+		if LocalPlayer.Character then
+			lockCamera()
+		end
+	
+		print("Camera position locked at world position (0, 0, 0) and will not follow the character, even after respawn.")
+	
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(LVMZZ_fake_script)()
+local function CISQ_fake_script() -- instantautofarmv2mobile.launch AF gui 
+	local script = Instance.new('Script', instantautofarmv2mobile)
+
+	function Click(mouse)
+	
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Jlchris1/NoWayINeededANewFileForE.Gbruh/refs/heads/main/af%20V2%20%5BBeta%5D"))()
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(CISQ_fake_script)()
+local function QUSGB_fake_script() -- instantautofarmv2mobile.remove stupid afk portal 
+	local script = Instance.new('Script', instantautofarmv2mobile)
+
+	function Click(mouse)
+	
+		local objectsToDestroy = {
+			workspace:FindFirstChild("Teleporters"),
+			workspace:FindFirstChild("Daily Spin"),
+			workspace:FindFirstChild("InteractiveGUI")
+		}
+	
+		for _, obj in ipairs(objectsToDestroy) do
+			if obj then
+				obj:Destroy()
+				print(obj.Name .. " has been destroyed.")
+			else
+				print("Object not found.")
+			end
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(QUSGB_fake_script)()
+local function IEYSLK_fake_script() -- instantautofarmv2mobile.remove forger 
+	local script = Instance.new('Script', instantautofarmv2mobile)
+
+	function Click(mouse)
+	
+		workspace.Interactables["Forge Information"]:destroy()
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(IEYSLK_fake_script)()
+local function ZSYRIKI_fake_script() -- instantautofarmv2mobile.auto take quest 
+	local script = Instance.new('Script', instantautofarmv2mobile)
+
+	function Click(mouse)
+	
+			_G.toggle = true
+	
+			while _G.toggle do
+				wait(0.2)
+				for i,v in next, workspace:GetDescendants() do if v.IsA(v,'ProximityPrompt') then fireproximityprompt(v) end end
+			end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(ZSYRIKI_fake_script)()
+local function IEDJ_fake_script() -- instantautofarmv2mobile.auto collect crystals 
+	local script = Instance.new('Script', instantautofarmv2mobile)
+
+	function Click(mouse)
+	
+		local active = false
+	
+		while true do
+			local foundClickDetector = false
+	
+			-- Iterate through all descendants in the workspace
+			for _, instance in ipairs(workspace:GetDescendants()) do
+				-- Check if the instance is a ClickDetector itself
+				if instance:IsA("ClickDetector") then
+					-- Fire the ClickDetector
+					fireclickdetector(instance)
+					foundClickDetector = true
+				end
+			end
+	
+			-- Update the active flag based on whether any ClickDetector was found
+			if foundClickDetector then
+				active = true
+			else
+				if active then
+					active = false
+					print("No ClickDetector found. Stopping.")
+				end
+				wait(2.5) -- Delay before checking again when inactive
+			end
+	
+			-- If active, add a slight delay to control the firing rate
+			if active then
+				wait(0.7) -- Adjust this delay for desired firing speed
+			end
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(IEDJ_fake_script)()
+local function YDFCC_fake_script() -- instantautofarmv2laptop.instant respawn 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		_G.toggle = true
+	
+	
+		while _G.toggle do
+			wait(0.4)
+			local args = {
+				[1] = 3
+			}
+	
+			game:GetService("ReplicatedStorage").ClientRemotes.SpawnHandler:FireServer(unpack(args))
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(YDFCC_fake_script)()
+local function UFWA_fake_script() -- instantautofarmv2laptop.launch AF gui 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Jlchris1/NoWayINeededANewFileForE.Gbruh/refs/heads/main/af%20V2%20%5BBeta%5D"))()
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(UFWA_fake_script)()
+local function DSIULFZ_fake_script() -- instantautofarmv2laptop.remove stupid afk portal 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		local objectsToDestroy = {
+			workspace:FindFirstChild("Teleporters"),
+			workspace:FindFirstChild("Daily Spin"),
+			workspace:FindFirstChild("InteractiveGUI")
+		}
+	
+		for _, obj in ipairs(objectsToDestroy) do
+			if obj then
+				obj:Destroy()
+				print(obj.Name .. " has been destroyed.")
+			else
+				print("Object not found.")
+			end
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(DSIULFZ_fake_script)()
+local function SARQJ_fake_script() -- instantautofarmv2laptop.remove forger 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		workspace.Interactables["Forge Information"]:destroy()
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(SARQJ_fake_script)()
+local function UNDW_fake_script() -- instantautofarmv2laptop.auto take quest 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+			_G.toggle = true
+	
+			while _G.toggle do
+				wait(0.2)
+				for i,v in next, workspace:GetDescendants() do if v.IsA(v,'ProximityPrompt') then fireproximityprompt(v) end end
+			end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(UNDW_fake_script)()
+local function GEHF_fake_script() -- instantautofarmv2laptop.auto collect crystals 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		local active = false
+	
+		while true do
+			local foundClickDetector = false
+	
+			-- Iterate through all descendants in the workspace
+			for _, instance in ipairs(workspace:GetDescendants()) do
+				-- Check if the instance is a ClickDetector itself
+				if instance:IsA("ClickDetector") then
+					-- Fire the ClickDetector
+					fireclickdetector(instance)
+					foundClickDetector = true
+				end
+			end
+	
+			-- Update the active flag based on whether any ClickDetector was found
+			if foundClickDetector then
+				active = true
+			else
+				if active then
+					active = false
+					print("No ClickDetector found. Stopping.")
+				end
+				wait(2.5) -- Delay before checking again when inactive
+			end
+	
+			-- If active, add a slight delay to control the firing rate
+			if active then
+				wait(0.7) -- Adjust this delay for desired firing speed
+			end
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(GEHF_fake_script)()
+local function NOMT_fake_script() -- instantautofarmv2laptop.auto switch tool 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		-- Get the player
+		local player = game.Players.LocalPlayer
+	
+		-- Create the GUI
+		local screenGui = Instance.new("ScreenGui")
+		screenGui.Parent = player:WaitForChild("PlayerGui")
+		
+	
+		-- Create the toggle button
+		local toggleButton = Instance.new("TextButton")
+		toggleButton.Size = UDim2.new(0, 150, 0, 30)
+		toggleButton.Position = UDim2.new(1, -160, 0, 50)
+		toggleButton.Text = "Start Tool Switch"
+		toggleButton.Parent = screenGui
+	
+		-- Create textboxes for delay adjustments
+		local equipDelayTextbox = Instance.new("TextBox")
+		equipDelayTextbox.Size = UDim2.new(0, 150, 0, 30)
+		equipDelayTextbox.Position = UDim2.new(1, -160, 0, 120)
+		equipDelayTextbox.Text = "Equip Delay"
+		equipDelayTextbox.Parent = screenGui
+	
+		local unequipDelayTextbox = Instance.new("TextBox")
+		unequipDelayTextbox.Size = UDim2.new(0, 150, 0, 30)
+		unequipDelayTextbox.Position = UDim2.new(1, -160, 0, 160)
+		unequipDelayTextbox.Text = "Unequip Delay"
+		unequipDelayTextbox.Parent = screenGui
+	
+		local nextToolDelayTextbox = Instance.new("TextBox")
+		nextToolDelayTextbox.Size = UDim2.new(0, 150, 0, 30)
+		nextToolDelayTextbox.Position = UDim2.new(1, -160, 0, 200)
+		nextToolDelayTextbox.Text = "Next Tool Delay"
+		nextToolDelayTextbox.Parent = screenGui
+	
+		-- Variable to track the equip loop coroutine
+		local loopCoroutine = nil
+		local equipDelay = 2 -- Default equip delay
+		local unequipDelay = 2 -- Default unequip delay
+		local nextToolDelay = 1 -- Default delay for switching to next tool
+	
+		-- Table to track tools already used in the current cycle
+		local usedTools = {}
+	
+		-- Function to set character visibility
+		local function setCharacterVisibility(isVisible)
+			local character = player.Character or player.CharacterAdded:Wait()
+			for _, part in pairs(character:GetDescendants()) do
+				if part:IsA("BasePart") and part.Transparency ~= 1 then
+					part.Transparency = isVisible and 0 or 1
+				end
+			end
+		end
+	
+		-- Function to get the next tool that hasn't been used in the cycle
+		local function getNextTool(backpack)
+			local tools = backpack:GetChildren()
+			local availableTools = {}
+	
+			-- Filter tools that haven't been used yet
+			for _, tool in pairs(tools) do
+				if not usedTools[tool.Name] then
+					table.insert(availableTools, tool)
+				end
+			end
+	
+			-- If no tools are available, reset the cycle
+			if #availableTools == 0 then
+				usedTools = {} -- Reset the cycle
+				for _, tool in pairs(tools) do
+					table.insert(availableTools, tool)
+				end
+			end
+	
+			-- Select a random tool from the available tools
+			if #availableTools > 0 then
+				local randomTool = availableTools[math.random(1, #availableTools)]
+				usedTools[randomTool.Name] = true -- Mark the tool as used
+				return randomTool
+			end
+		end
+	
+		-- Function to equip a random tool
+		local function equipRandomTool()
+			local backpack = player:WaitForChild("Backpack")
+	
+			-- Check if player already has a tool equipped
+			if player.Character and player.Character:FindFirstChildOfClass("Tool") then
+				print("Already holding a tool!")
+				return
+			end
+	
+			local randomTool = getNextTool(backpack)
+			if randomTool then
+				randomTool.Parent = player.Character -- Equip the tool
+				print("Equipped: " .. randomTool.Name)
+				wait(equipDelay) -- Wait before unequipping
+				randomTool.Parent = backpack -- Unequip the tool
+				wait(unequipDelay) -- Delay before the next equip
+			else
+				print("No tools available!")
+			end
+		end
+	
+		-- Function to start the equip loop
+		local function startEquipLoop()
+			-- Stop the previous loop if it exists
+			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
+				coroutine.close(loopCoroutine) -- Destroy the old coroutine
+			end
+	
+			-- Create a new loop coroutine
+			loopCoroutine = coroutine.create(function()
+				while true do
+					equipRandomTool()
+					wait(nextToolDelay) -- Delay between switching tools
+				end
+			end)
+	
+			-- Start the new coroutine
+			coroutine.resume(loopCoroutine)
+		end
+	
+		-- Function to stop the equip loop
+		local function stopEquipLoop()
+			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
+				coroutine.close(loopCoroutine) -- Destroy the loop
+			end
+		end
+	
+		-- Function to handle toggle button press
+		toggleButton.MouseButton1Click:Connect(function()
+			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
+				-- If the loop is running, stop it
+				stopEquipLoop()
+				toggleButton.Text = "Start Tool Switch"
+			else
+				-- Start the loop
+				startEquipLoop()
+				toggleButton.Text = "Stop Tool Switch"
+			end
+		end)
+	
+		-- Function to handle delay changes
+		equipDelayTextbox.FocusLost:Connect(function()
+			local newEquipDelay = tonumber(equipDelayTextbox.Text)
+			if newEquipDelay and newEquipDelay > 0 then
+				equipDelay = newEquipDelay
+			else
+				equipDelayTextbox.Text = "Invalid input"
+			end
+		end)
+	
+		unequipDelayTextbox.FocusLost:Connect(function()
+			local newUnequipDelay = tonumber(unequipDelayTextbox.Text)
+			if newUnequipDelay and newUnequipDelay > 0 then
+				unequipDelay = newUnequipDelay
+			else
+				unequipDelayTextbox.Text = "Invalid input"
+			end
+		end)
+	
+		nextToolDelayTextbox.FocusLost:Connect(function()
+			local newNextToolDelay = tonumber(nextToolDelayTextbox.Text)
+			if newNextToolDelay and newNextToolDelay > 0 then
+				nextToolDelay = newNextToolDelay
+			else
+				nextToolDelayTextbox.Text = "Invalid input"
+			end
+		end)
+	
+		-- Handle respawn and initialize the script
+		local function onCharacterAdded(character)
+			-- Make character visible
+			setCharacterVisibility(true)
+	
+			-- Wait for the character to fully load
+			wait(2) -- Adjust as needed for loading time
+	
+			-- Start the equip loop if toggled on
+			if loopCoroutine and coroutine.status(loopCoroutine) ~= "dead" then
+				startEquipLoop()
+			end
+		end
+	
+		-- Connect to the CharacterAdded event
+		player.CharacterAdded:Connect(onCharacterAdded)
+	
+		-- Handle initial spawn
+		if player.Character then
+			onCharacterAdded(player.Character)
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(NOMT_fake_script)()
+local function LGJTX_fake_script() -- instantautofarmv2laptop.auto take quest 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		-- Reference to necessary services
+		local player = game:GetService("Players").LocalPlayer
+		local replicatedStorage = game:GetService("ReplicatedStorage")
+		local dialogueHandler = replicatedStorage.ClientRemotes.DialogueHandler
+		local gameUI = player.PlayerGui:WaitForChild("GameUI")
+	
+		-- Function to fire the 1, 1, 1 pattern with a 0.7-second delay
+		local function fireRemotes111()
+			local args1 = { [1] = 1 }
+			dialogueHandler:FireServer(unpack(args1))
+			wait(0.7)
+	
+			local args2 = { [1] = 1 }
+			dialogueHandler:FireServer(unpack(args2))
+			wait(0.7)
+	
+			local args3 = { [1] = 1 }
+			dialogueHandler:FireServer(unpack(args3))
+			wait(0.7)
+		end
+	
+		-- Function to fire the 2, 1, 1 pattern with a 0.7-second delay
+		local function fireRemotes211()
+			local args1 = { [1] = 2 }
+			dialogueHandler:FireServer(unpack(args1))
+			wait(0.7)
+	
+			local args2 = { [1] = 1 }
+			dialogueHandler:FireServer(unpack(args2))
+			wait(0.7)
+	
+			local args3 = { [1] = 1 }
+			dialogueHandler:FireServer(unpack(args3))
+			wait(0.7)
+		end
+	
+		-- Function to check conditions and fire remotes
+		local function checkAndFireRemotes()
+			local dialogue = gameUI.Dialogue
+			local quests = gameUI.Quests
+			local questHolder = quests:FindFirstChild("QuestHolder")
+			local noneText = questHolder and questHolder:FindFirstChild("NoneText")
+			local progress = quests.InformationFrame.ScrollingFrame:FindFirstChild("QuestPartProgress") and
+				quests.InformationFrame.ScrollingFrame.QuestPartProgress:FindFirstChild("Progress")
+	
+			-- Fire the 1, 1, 1 pattern if CurrentlySpeaking is true and NoneText.Visible is true
+			if dialogue.CurrentlySpeaking.Value == true and noneText and noneText.Visible == true then
+				print("CurrentlySpeaking is true and NoneText is visible. Firing 1, 1, 1 remotes...")
+				fireRemotes111()
+			end
+	
+			-- Fire the 2, 1, 1 pattern if Progress exists and its text equals "4/4"
+			if dialogue.CurrentlySpeaking.Value == true and progress and progress.Text == "4/4" then
+				print("Progress is 4/4. Firing 2, 1, 1 remotes...")
+				fireRemotes211()
+			end
+		end
+	
+		-- Continuously check conditions while the script is active
+		while true do
+			checkAndFireRemotes()
+			wait(1) -- Delay to avoid unnecessary checks
+		end
+	
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(LGJTX_fake_script)()
+local function JWWG_fake_script() -- mainframe.LocalScript 
+	local script = Instance.new('LocalScript', mainframe)
+
+	local dragger = {}; 
+	local resizer = {};
+	
+	do
+		local mouse = game:GetService("Players").LocalPlayer:GetMouse();
+		local inputService = game:GetService('UserInputService');
+		local heartbeat = game:GetService("RunService").Heartbeat;
+		-- // credits to Ririchi / Inori for this cute drag function :)
+		function dragger.new(frame)
+			local s, event = pcall(function()
+				return frame.MouseEnter
+			end)
+	
+			if s then
+				frame.Active = true;
+	
+				event:connect(function()
+					local input = frame.InputBegan:connect(function(key)
+						if key.UserInputType == Enum.UserInputType.MouseButton1 then
+							local objectPosition = Vector2.new(mouse.X - frame.AbsolutePosition.X, mouse.Y - frame.AbsolutePosition.Y);
+							while heartbeat:wait() and inputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
+								frame:TweenPosition(UDim2.new(0, mouse.X - objectPosition.X + (frame.Size.X.Offset * frame.AnchorPoint.X), 0, mouse.Y - objectPosition.Y + (frame.Size.Y.Offset * frame.AnchorPoint.Y)), 'Out', 'Quad', 0.1, true);
+							end
+						end
+					end)
+	
+					local leave;
+					leave = frame.MouseLeave:connect(function()
+						input:disconnect();
+						leave:disconnect();
+					end)
+				end)
+			end
+		end
+	
+		function resizer.new(p, s)
+			p:GetPropertyChangedSignal('AbsoluteSize'):connect(function()
+				s.Size = UDim2.new(s.Size.X.Scale, s.Size.X.Offset, s.Size.Y.Scale, p.AbsoluteSize.Y);
+			end)
+		end
+	end
+	script.Parent.Active = true
+	script.Parent.Draggable = true
+end
+coroutine.wrap(JWWG_fake_script)()
+local function WXZAPE_fake_script() -- toggle.LocalScript 
+	local script = Instance.new('LocalScript', toggle)
+
+	local dragger = {}; 
+	local resizer = {};
+	
+	do
+		local mouse = game:GetService("Players").LocalPlayer:GetMouse();
+		local inputService = game:GetService('UserInputService');
+		local heartbeat = game:GetService("RunService").Heartbeat;
+		-- // credits to Ririchi / Inori for this cute drag function :)
+		function dragger.new(frame)
+			local s, event = pcall(function()
+				return frame.MouseEnter
+			end)
+	
+			if s then
+				frame.Active = true;
+	
+				event:connect(function()
+					local input = frame.InputBegan:connect(function(key)
+						if key.UserInputType == Enum.UserInputType.MouseButton1 then
+							local objectPosition = Vector2.new(mouse.X - frame.AbsolutePosition.X, mouse.Y - frame.AbsolutePosition.Y);
+							while heartbeat:wait() and inputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
+								frame:TweenPosition(UDim2.new(0, mouse.X - objectPosition.X + (frame.Size.X.Offset * frame.AnchorPoint.X), 0, mouse.Y - objectPosition.Y + (frame.Size.Y.Offset * frame.AnchorPoint.Y)), 'Out', 'Quad', 0.1, true);
+							end
+						end
+					end)
+	
+					local leave;
+					leave = frame.MouseLeave:connect(function()
+						input:disconnect();
+						leave:disconnect();
+					end)
+				end)
+			end
+		end
+	
+		function resizer.new(p, s)
+			p:GetPropertyChangedSignal('AbsoluteSize'):connect(function()
+				s.Size = UDim2.new(s.Size.X.Scale, s.Size.X.Offset, s.Size.Y.Scale, p.AbsoluteSize.Y);
+			end)
+		end
+	end
+	script.Parent.Active = true
+	script.Parent.Draggable = true
+end
+coroutine.wrap(WXZAPE_fake_script)()
+local function QIEQKID_fake_script() -- toggle.LocalScript 
+	local script = Instance.new('LocalScript', toggle)
+
+	local back = script.Parent.Parent["main frame"]
+	local con = script.Parent.Parent["main frame"]
+	
+	local window = {
+		count = 0;
+		toggles = {},
+		closed = false;
+	}
+	script.Parent.MouseButton1Click:connect(function()
+		window.closed = not window.closed
+		script.Parent.Text = (window.closed and "+" or "-")
+		if script.Parent.Text == "+" then
+			back:TweenSize(UDim2.new(0, 190,0, 0), "Out", "Sine", 0.5)
+			con:TweenSize(UDim2.new(0, 190,0, 0), "Out", "Sine", 0.5)
+			wait(0.1) do
+				con.Visible = false
+			end
+		else
+			back:TweenSize(UDim2.new(0, 399,0, 239), "Out", "Sine", 0.5)
+			con:TweenSize(UDim2.new(0, 399,0, 239), "Out", "Sine", 0.5)
+			wait(0.2) do
+				con.Visible = true
+			end
+		end
+	
+	end)
+end
+coroutine.wrap(QIEQKID_fake_script)()
