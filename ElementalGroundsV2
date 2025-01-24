@@ -108,7 +108,7 @@ toggle.TextSize = 32.000
 
 -- Scripts:
 
-local function JFVPNN_fake_script() -- autofarmsetuptab.Script 
+local function ZQKMLIP_fake_script() -- autofarmsetuptab.Script 
 	local script = Instance.new('Script', autofarmsetuptab)
 
 	function Click(mouse)
@@ -131,8 +131,8 @@ local function JFVPNN_fake_script() -- autofarmsetuptab.Script
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(JFVPNN_fake_script)()
-local function DSYSO_fake_script() -- instantautofarmv2mobile.instant respawn 
+coroutine.wrap(ZQKMLIP_fake_script)()
+local function PNQU_fake_script() -- instantautofarmv2mobile.instant respawn 
 	local script = Instance.new('Script', instantautofarmv2mobile)
 
 	function Click(mouse)
@@ -154,8 +154,8 @@ local function DSYSO_fake_script() -- instantautofarmv2mobile.instant respawn
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(DSYSO_fake_script)()
-local function PXLP_fake_script() -- instantautofarmv2mobile.lock camara 
+coroutine.wrap(PNQU_fake_script)()
+local function JEKTOF_fake_script() -- instantautofarmv2mobile.lock camara 
 	local script = Instance.new('Script', instantautofarmv2mobile)
 
 	function Click(mouse)
@@ -207,8 +207,8 @@ local function PXLP_fake_script() -- instantautofarmv2mobile.lock camara
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(PXLP_fake_script)()
-local function QOPR_fake_script() -- instantautofarmv2mobile.launch AF gui 
+coroutine.wrap(JEKTOF_fake_script)()
+local function JGTNU_fake_script() -- instantautofarmv2mobile.launch AF gui 
 	local script = Instance.new('Script', instantautofarmv2mobile)
 
 	function Click(mouse)
@@ -220,8 +220,8 @@ local function QOPR_fake_script() -- instantautofarmv2mobile.launch AF gui
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(QOPR_fake_script)()
-local function SJTKHYV_fake_script() -- instantautofarmv2mobile.remove stupid afk portal 
+coroutine.wrap(JGTNU_fake_script)()
+local function PZBXI_fake_script() -- instantautofarmv2mobile.remove stupid afk portal 
 	local script = Instance.new('Script', instantautofarmv2mobile)
 
 	function Click(mouse)
@@ -246,8 +246,8 @@ local function SJTKHYV_fake_script() -- instantautofarmv2mobile.remove stupid af
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(SJTKHYV_fake_script)()
-local function QYPEL_fake_script() -- instantautofarmv2mobile.remove forger 
+coroutine.wrap(PZBXI_fake_script)()
+local function HLYF_fake_script() -- instantautofarmv2mobile.remove forger 
 	local script = Instance.new('Script', instantautofarmv2mobile)
 
 	function Click(mouse)
@@ -259,8 +259,8 @@ local function QYPEL_fake_script() -- instantautofarmv2mobile.remove forger
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(QYPEL_fake_script)()
-local function CIIB_fake_script() -- instantautofarmv2mobile.auto take quest 
+coroutine.wrap(HLYF_fake_script)()
+local function UPXYAT_fake_script() -- instantautofarmv2mobile.auto take quest 
 	local script = Instance.new('Script', instantautofarmv2mobile)
 
 	function Click(mouse)
@@ -277,8 +277,8 @@ local function CIIB_fake_script() -- instantautofarmv2mobile.auto take quest
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(CIIB_fake_script)()
-local function OBYBLNU_fake_script() -- instantautofarmv2mobile.auto collect crystals 
+coroutine.wrap(UPXYAT_fake_script)()
+local function FAYHJ_fake_script() -- instantautofarmv2mobile.auto collect crystals 
 	local script = Instance.new('Script', instantautofarmv2mobile)
 
 	function Click(mouse)
@@ -320,8 +320,8 @@ local function OBYBLNU_fake_script() -- instantautofarmv2mobile.auto collect cry
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(OBYBLNU_fake_script)()
-local function OKNVLQ_fake_script() -- instantautofarmv2laptop.instant respawn 
+coroutine.wrap(FAYHJ_fake_script)()
+local function UTVFZ_fake_script() -- instantautofarmv2laptop.instant respawn 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -343,8 +343,8 @@ local function OKNVLQ_fake_script() -- instantautofarmv2laptop.instant respawn
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(OKNVLQ_fake_script)()
-local function KXLJ_fake_script() -- instantautofarmv2laptop.launch AF gui 
+coroutine.wrap(UTVFZ_fake_script)()
+local function UUJB_fake_script() -- instantautofarmv2laptop.launch AF gui 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -356,8 +356,8 @@ local function KXLJ_fake_script() -- instantautofarmv2laptop.launch AF gui
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(KXLJ_fake_script)()
-local function LCDOEE_fake_script() -- instantautofarmv2laptop.remove stupid afk portal 
+coroutine.wrap(UUJB_fake_script)()
+local function COMX_fake_script() -- instantautofarmv2laptop.remove stupid afk portal 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -382,8 +382,8 @@ local function LCDOEE_fake_script() -- instantautofarmv2laptop.remove stupid afk
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(LCDOEE_fake_script)()
-local function ZKRYQ_fake_script() -- instantautofarmv2laptop.remove forger 
+coroutine.wrap(COMX_fake_script)()
+local function XCGU_fake_script() -- instantautofarmv2laptop.remove forger 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -395,8 +395,8 @@ local function ZKRYQ_fake_script() -- instantautofarmv2laptop.remove forger
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(ZKRYQ_fake_script)()
-local function OWRZR_fake_script() -- instantautofarmv2laptop.auto take quest 
+coroutine.wrap(XCGU_fake_script)()
+local function MGIIW_fake_script() -- instantautofarmv2laptop.auto take quest 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -413,8 +413,8 @@ local function OWRZR_fake_script() -- instantautofarmv2laptop.auto take quest
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(OWRZR_fake_script)()
-local function NXLZ_fake_script() -- instantautofarmv2laptop.auto collect crystals 
+coroutine.wrap(MGIIW_fake_script)()
+local function EHRLMOR_fake_script() -- instantautofarmv2laptop.auto collect crystals 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -456,8 +456,8 @@ local function NXLZ_fake_script() -- instantautofarmv2laptop.auto collect crysta
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(NXLZ_fake_script)()
-local function OWCQ_fake_script() -- instantautofarmv2laptop.auto switch tool 
+coroutine.wrap(EHRLMOR_fake_script)()
+local function WKRSLGK_fake_script() -- instantautofarmv2laptop.auto switch tool 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -628,8 +628,8 @@ local function OWCQ_fake_script() -- instantautofarmv2laptop.auto switch tool
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(OWCQ_fake_script)()
-local function ZQQO_fake_script() -- instantautofarmv2laptop.auto take quest 
+coroutine.wrap(WKRSLGK_fake_script)()
+local function MRRWEBC_fake_script() -- instantautofarmv2laptop.auto take quest 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -703,8 +703,8 @@ local function ZQQO_fake_script() -- instantautofarmv2laptop.auto take quest
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(ZQQO_fake_script)()
-local function UCHI_fake_script() -- instantautofarmv2laptop.auto switch tool 
+coroutine.wrap(MRRWEBC_fake_script)()
+local function MYCERO_fake_script() -- instantautofarmv2laptop.auto switch tool 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -875,8 +875,8 @@ local function UCHI_fake_script() -- instantautofarmv2laptop.auto switch tool
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(UCHI_fake_script)()
-local function GLRWTE_fake_script() -- instantautofarmv2laptop.auto switch tool 
+coroutine.wrap(MYCERO_fake_script)()
+local function CPJCC_fake_script() -- instantautofarmv2laptop.auto switch tool 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -1047,8 +1047,8 @@ local function GLRWTE_fake_script() -- instantautofarmv2laptop.auto switch tool
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(GLRWTE_fake_script)()
-local function FVLAZJW_fake_script() -- instantautofarmv2laptop.auto switch tool 
+coroutine.wrap(CPJCC_fake_script)()
+local function XPJZII_fake_script() -- instantautofarmv2laptop.auto switch tool 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -1219,8 +1219,8 @@ local function FVLAZJW_fake_script() -- instantautofarmv2laptop.auto switch tool
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(FVLAZJW_fake_script)()
-local function KQDK_fake_script() -- instantautofarmv2laptop.auto switch tool 
+coroutine.wrap(XPJZII_fake_script)()
+local function MGKAHIN_fake_script() -- instantautofarmv2laptop.auto switch tool 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -1391,8 +1391,8 @@ local function KQDK_fake_script() -- instantautofarmv2laptop.auto switch tool
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(KQDK_fake_script)()
-local function NEFNOR_fake_script() -- instantautofarmv2laptop.auto switch tool 
+coroutine.wrap(MGKAHIN_fake_script)()
+local function THPMIG_fake_script() -- instantautofarmv2laptop.auto switch tool 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -1563,8 +1563,8 @@ local function NEFNOR_fake_script() -- instantautofarmv2laptop.auto switch tool
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(NEFNOR_fake_script)()
-local function WUOVVLS_fake_script() -- instantautofarmv2laptop.auto switch tool 
+coroutine.wrap(THPMIG_fake_script)()
+local function TUOHQW_fake_script() -- instantautofarmv2laptop.auto switch tool 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -1735,8 +1735,8 @@ local function WUOVVLS_fake_script() -- instantautofarmv2laptop.auto switch tool
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(WUOVVLS_fake_script)()
-local function NOWYJIL_fake_script() -- instantautofarmv2laptop.auto switch tool 
+coroutine.wrap(TUOHQW_fake_script)()
+local function HCZMCBO_fake_script() -- instantautofarmv2laptop.auto switch tool 
 	local script = Instance.new('Script', instantautofarmv2laptop)
 
 	function Click(mouse)
@@ -1907,8 +1907,20 @@ local function NOWYJIL_fake_script() -- instantautofarmv2laptop.auto switch tool
 	
 	script.Parent.MouseButton1Down:connect(Click)
 end
-coroutine.wrap(NOWYJIL_fake_script)()
-local function XEQSMW_fake_script() -- mainframe.LocalScript 
+coroutine.wrap(HCZMCBO_fake_script)()
+local function JOMUX_fake_script() -- instantautofarmv2laptop.remove trees 
+	local script = Instance.new('Script', instantautofarmv2laptop)
+
+	function Click(mouse)
+	
+		game.workspace.Map["Inner Trees"]:destroy()
+	end
+	
+	
+	script.Parent.MouseButton1Down:connect(Click)
+end
+coroutine.wrap(JOMUX_fake_script)()
+local function ZJVRTB_fake_script() -- mainframe.LocalScript 
 	local script = Instance.new('LocalScript', mainframe)
 
 	local dragger = {}; 
@@ -1955,8 +1967,8 @@ local function XEQSMW_fake_script() -- mainframe.LocalScript
 	script.Parent.Active = true
 	script.Parent.Draggable = true
 end
-coroutine.wrap(XEQSMW_fake_script)()
-local function UBHHTJ_fake_script() -- toggle.LocalScript 
+coroutine.wrap(ZJVRTB_fake_script)()
+local function ZLRCYLS_fake_script() -- toggle.LocalScript 
 	local script = Instance.new('LocalScript', toggle)
 
 	local dragger = {}; 
@@ -2003,8 +2015,8 @@ local function UBHHTJ_fake_script() -- toggle.LocalScript
 	script.Parent.Active = true
 	script.Parent.Draggable = true
 end
-coroutine.wrap(UBHHTJ_fake_script)()
-local function NFOUOF_fake_script() -- toggle.LocalScript 
+coroutine.wrap(ZLRCYLS_fake_script)()
+local function FYPL_fake_script() -- toggle.LocalScript 
 	local script = Instance.new('LocalScript', toggle)
 
 	local back = script.Parent.Parent["main frame"]
@@ -2034,4 +2046,4 @@ local function NFOUOF_fake_script() -- toggle.LocalScript
 	
 	end)
 end
-coroutine.wrap(NFOUOF_fake_script)()
+coroutine.wrap(FYPL_fake_script)()
