@@ -1,0 +1,225 @@
+local syn = getgenv().syn
+getgenv().syn = false
+
+-- Library loadstring here
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()local Window = OrionLib:MakeWindow({Name = "JLhub", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})local Tab = Window:MakeTab({
+    Name = "Tab 1",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+}) Tab:AddButton({
+    Name = "delete every inf range interactions",
+    Callback = function()
+              local objectsToDestroy = {
+    workspace:FindFirstChild("Teleporters"),
+    workspace:FindFirstChild("Daily Spin"),
+    workspace:FindFirstChild("InteractiveGUI")
+}
+
+for _, obj in ipairs(objectsToDestroy) do
+    if obj then
+        obj:Destroy()
+        print(obj.Name .. " has been destroyed.")
+    else
+        print("Object not found.")
+    end
+end
+
+      end    
+}) Tab:AddButton({
+    Name = "auto place soil (wait like 10 seconds bc it takes long)",
+    Callback = function()
+              _G.PlacementRequest = true
+
+spawn(function( )
+while _G.PlacementRequest == true do
+local args = {
+    [1] = "Tilled Soil",
+    [2] = {
+        ["Orientation"] = Vector3.new(-0, 0, 0),
+        ["Position"] = Vector3.new(-1282.0001220703125, 942.3041381835938, -45.9999885559082)
+    }
+}
+
+game:GetService("ReplicatedStorage").ClientRemotes.PlacementRequest:FireServer(unpack(args))
+
+wait(10)
+end
+end)
+
+spawn(function( )
+while _G.PlacementRequest == true do
+local args = {
+    [1] = "Tilled Soil",
+    [2] = {
+        ["Orientation"] = Vector3.new(-0, 0, 0),
+        ["Position"] = Vector3.new(-1269.9998779296875, 942.3041381835938, -46.000003814697266)
+    }
+}
+
+game:GetService("ReplicatedStorage").ClientRemotes.PlacementRequest:FireServer(unpack(args))
+
+wait(12)
+end
+end)
+
+spawn(function( )
+while _G.PlacementRequest == true do
+local args = {
+    [1] = "Tilled Soil",
+    [2] = {
+        ["Orientation"] = Vector3.new(-0, 0, 0),
+        ["Position"] = Vector3.new(-1282, 942.3041381835938, -34)
+    }
+}
+
+game:GetService("ReplicatedStorage").ClientRemotes.PlacementRequest:FireServer(unpack(args))
+
+wait(14)
+end
+end)
+
+spawn(function( )
+while _G.PlacementRequest == true do
+local args = {
+    [1] = "Tilled Soil",
+    [2] = {
+        ["Orientation"] = Vector3.new(-0, 0, 0),
+        ["Position"] = Vector3.new(-1282, 942.3041381835938, -58)
+    }
+}
+
+game:GetService("ReplicatedStorage").ClientRemotes.PlacementRequest:FireServer(unpack(args))
+
+wait(16)
+end
+end)
+
+spawn(function( )
+while _G.PlacementRequest == true do
+local args = {
+    [1] = "Tilled Soil",
+    [2] = {
+        ["Orientation"] = Vector3.new(-0, 0, 0),
+        ["Position"] = Vector3.new(-1294, 942.3041381835938, -46)
+    }
+}
+
+game:GetService("ReplicatedStorage").ClientRemotes.PlacementRequest:FireServer(unpack(args))
+
+wait(18)
+end
+end)
+      end    
+}) Tab:AddButton({
+    Name = "tp to farm location",
+    Callback = function()
+              local teleport_table = {
+    location1 = Vector3.new(-1282.0001220703125, 942.3041381835938, -45.9999885559082), -- PUT THE POSITION HERE
+    location2 = Vector3.new()  -- PUT THE POSITION HERE
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(0,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function bypass_teleport(v)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        -- a.Completed:Wait()
+        -- print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1)
+      end    
+}) Tab:AddButton({
+    Name = "auto harvest",
+    Callback = function()
+              _G.toggle = true
+
+while _G.toggle do
+wait(0.2)
+for i,v in next, workspace:GetDescendants() do if v.IsA(v,'ProximityPrompt') then fireproximityprompt(v) end end
+end
+      end    
+}) Tab:AddButton({
+    Name = "auto water (use anti afk on inf yield and hold it)",
+    Callback = function()
+              local teleportLocations = {
+    Vector3.new(-1269.9998779296875, 942.3041381835938, -46.000003814697266),
+    Vector3.new(-1282, 942.3041381835938, -34),
+    Vector3.new(-1282, 942.3041381835938, -58),
+    Vector3.new(-1294, 942.3041381835938, -46),
+    Vector3.new(-1282.0001220703125, 942.3041381835938, -45.9999885559082)
+}
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+local visitedLocations = {}
+local currentCycle = 1
+
+local function teleportToNextLocation()
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        local humanoidRootPart = character.HumanoidRootPart
+
+        -- If all locations are visited, reset the cycle
+        if #visitedLocations == #teleportLocations then
+            visitedLocations = {}
+        end
+
+        -- Find the next unvisited location
+        for _, location in ipairs(teleportLocations) do
+            if not table.find(visitedLocations, location) then
+                humanoidRootPart.CFrame = CFrame.new(location)
+                table.insert(visitedLocations, location)
+                break
+            end
+        end
+    else
+        warn("Character or HumanoidRootPart not found!")
+    end
+end
+
+-- Loop to teleport the player every 3 seconds
+while true do
+    teleportToNextLocation()
+    wait(3) -- Wait for 3 seconds before teleporting again
+end
+
+      end    
+}) local Tab = Window:MakeTab({
+    Name = "READ ME",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+}) Tab:AddButton({
+    Name = "to use this you need to put water can on hold so it continues",
+    Callback = function()
+              print("button pressed")
+      end    
+}) Tab:AddButton({
+    Name = "don't use an auto clicker instead launch inf yield anti afk",
+    Callback = function()
+              print("button pressed")
+      end    
+}) Tab:AddButton({
+    Name = "js type antiafk in inf yield",
+    Callback = function()
+              print("button pressed")
+      end    
+}) Tab:AddButton({
+    Name = "make sure nothing can interact with your screen",
+    Callback = function()
+              print("button pressed")
+      end    
+}) Tab:AddButton({
+    Name = "goodluck",
+    Callback = function()
+              print("button pressed")
+      end    
+})
+getgenv().syn = syn
