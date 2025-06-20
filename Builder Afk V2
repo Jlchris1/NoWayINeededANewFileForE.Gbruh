@@ -1,0 +1,236 @@
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
+local TeleportService = game:GetService("TeleportService")
+local StarterPlayer = game:GetService("StarterPlayer")
+
+local localPlayer = Players.LocalPlayer
+local spinRemote = ReplicatedStorage:WaitForChild("ClientRemotes"):WaitForChild("SpinHandler")
+local spawnRemote = ReplicatedStorage:WaitForChild("ClientRemotes"):WaitForChild("SpawnHandler")
+local placementRemote = ReplicatedStorage:WaitForChild("ClientRemotes"):WaitForChild("PlacementRequest")
+local slotHandlerRemote = ReplicatedStorage:WaitForChild("ClientRemotes"):WaitForChild("SlotHandler")
+
+local function getCurrentElementIDText()
+	local playerGui = localPlayer:WaitForChild("PlayerGui")
+	local gameUI = playerGui:WaitForChild("GameUI")
+	local slotFrame = gameUI:WaitForChild("SlotFrame")
+	local currentSlotFrame = slotFrame:WaitForChild("CurrentSlotFrame")
+	local currentElement = currentSlotFrame:WaitForChild("CurrentElement")
+	local idLabel = currentElement:WaitForChild("ID")
+	return idLabel.Text
+end
+
+local function waitForIDTextChange(oldText, timeout)
+	timeout = timeout or 5
+	local startTime = tick()
+	while tick() - startTime < timeout do
+		local newText = getCurrentElementIDText()
+		if newText ~= oldText then
+			return newText
+		end
+		wait(0.1)
+	end
+	return getCurrentElementIDText()
+end
+
+local function confirmBuilder()
+	for _ = 1, 5 do
+		wait(0.1)
+		if getCurrentElementIDText() ~= "Builder" then
+			return false
+		end
+	end
+	return true
+end
+
+local function teleportPlayerTo(position)
+	local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+	local hrp = character:WaitForChild("HumanoidRootPart")
+	hrp.CFrame = CFrame.new(position)
+end
+
+local function equipTool(toolName)
+	local backpack = localPlayer:WaitForChild("Backpack")
+	local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+	local tool = backpack:FindFirstChild(toolName)
+	if not tool then return false end
+
+	tool.Parent = character
+	local equipped = false
+	local conn
+	conn = character.ChildAdded:Connect(function(child)
+		if child == tool then
+			equipped = true
+			conn:Disconnect()
+		end
+	end)
+
+	local humanoid = character:WaitForChild("Humanoid")
+	humanoid:EquipTool(tool)
+	local timeout = tick() + 3
+	while not equipped and tick() < timeout do
+		wait(0.1)
+	end
+	return equipped
+end
+
+local function allBlueprintsDestroyed()
+	local itemHolder = Workspace:FindFirstChild("itemHolder")
+	if not itemHolder then return true end
+	for _, part in ipairs(itemHolder:GetChildren()) do
+		if part.Name == "PlacementBuildingPart" and part:IsDescendantOf(Workspace) then
+			return false
+		end
+	end
+	return true
+end
+
+local function processBlueprintsLoop()
+	while true do
+		local itemHolder = Workspace:FindFirstChild("itemHolder")
+		if not itemHolder then wait(1.5) continue end
+
+		local blueprints = {}
+		for _, part in ipairs(itemHolder:GetChildren()) do
+			if part.Name == "PlacementBuildingPart" and part:IsDescendantOf(Workspace) then
+				table.insert(blueprints, part)
+			end
+		end
+
+		if #blueprints == 0 then break end
+
+		for _, bp in ipairs(blueprints) do
+			if not bp or not bp:IsDescendantOf(Workspace) then continue end
+			if bp:IsA("BasePart") then
+				teleportPlayerTo(bp.Position + Vector3.new(0, 5, 0))
+			elseif bp.PrimaryPart then
+				teleportPlayerTo(bp.PrimaryPart.Position + Vector3.new(0, 5, 0))
+			end
+			wait(1.5)
+		end
+	end
+end
+
+local function injectRejoinScript()
+	local source = [[
+		local TeleportService = game:GetService("TeleportService")
+		local Players = game:GetService("Players")
+		local localPlayer = Players.LocalPlayer
+		local placeId = game.PlaceId
+		local jobId = game.JobId
+		wait(5)
+		while true do
+			local success, err = pcall(function()
+				TeleportService:TeleportToPlaceInstance(placeId, jobId, localPlayer)
+			end)
+			if success then break end
+			wait(3)
+		end
+	]]
+	local starterScripts = StarterPlayer:FindFirstChild("StarterPlayerScripts")
+	if not starterScripts then warn("No StarterPlayerScripts") return end
+
+	local existing = starterScripts:FindFirstChild("AutoRejoinScript")
+	if existing then existing:Destroy() end
+
+	local scriptClone = Instance.new("LocalScript")
+	scriptClone.Name = "AutoRejoinScript"
+	scriptClone.Source = source
+	scriptClone.Parent = starterScripts
+end
+
+local function kickPlayer()
+	localPlayer:Destroy()
+end
+
+local function rollUntilBuilderOrFail()
+	local initialText = getCurrentElementIDText()
+
+	while true do
+		-- Check for Entity Beyond Time BEFORE spinning
+		local currentID = getCurrentElementIDText()
+		if currentID == "Entity Beyond Time" then
+			slotHandlerRemote:FireServer("forward", "Element")
+			wait(1)
+			-- Check if next slot is still "Entity Beyond Time"
+			currentID = getCurrentElementIDText()
+			if currentID == "Entity Beyond Time" then
+				-- Can't move forward anymore, freeze script by returning nil
+				return nil
+			end
+		end
+
+		spinRemote:FireServer()
+		local updatedText = waitForIDTextChange(initialText)
+		initialText = updatedText
+
+		if updatedText == "Builder" and confirmBuilder() then
+			return true
+		elseif updatedText == "Entity Beyond Time" then
+			-- The slot got Entity Beyond Time after spin, handle as above (repeat in next loop)
+			continue
+		end
+
+		wait(0.1)
+	end
+end
+
+-- Start main logic with detection for Entity Beyond Time and rolling builder
+
+local rollResult = rollUntilBuilderOrFail()
+
+if rollResult == nil then
+	-- Frozen due to Entity Beyond Time stuck at last slot, stop everything
+	return
+elseif rollResult ~= true then
+	-- Roll failed and no entity beyond time: kick for safety
+	kickPlayer()
+end
+
+Workspace.FallenPartsDestroyHeight = 0/0
+spawnRemote:FireServer(2)
+wait(1.5)
+teleportPlayerTo(Vector3.new(-606, 3, 954))
+wait(1.5)
+
+-- Verify builder after teleport
+if getCurrentElementIDText() ~= "Builder" or not confirmBuilder() then
+	if not rollUntilBuilderOrFail() then
+		kickPlayer()
+	end
+
+	spawnRemote:FireServer(2)
+	wait(1.5)
+	teleportPlayerTo(Vector3.new(-606, 3, 954))
+	wait(1.5)
+
+	if getCurrentElementIDText() ~= "Builder" or not confirmBuilder() then
+		kickPlayer()
+	end
+end
+
+local mortarPositions = {
+	{Position = Vector3.new(-606, 3.2059381008148193, 954), Orientation = Vector3.new(0, 0, 0)},
+	{Position = Vector3.new(-598, 3.2059381008148193, 950), Orientation = Vector3.new(0, 0, 0)},
+	{Position = Vector3.new(-592, 3.2059381008148193, 948), Orientation = Vector3.new(0, 0, 0)},
+}
+
+for _, vec in ipairs(mortarPositions) do
+	local args = {
+		"Mortar",
+		{
+			Orientation = vec.Orientation,
+			Position = vec.Position,
+		}
+	}
+	placementRemote:FireServer(unpack(args))
+	wait(1.2)
+end
+
+if equipTool("Engineer's Wrench") then
+	processBlueprintsLoop()
+end
+
+injectRejoinScript()
+wait(1)
+kickPlayer()
